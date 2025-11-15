@@ -9,5 +9,6 @@
 .cxx
 local.properties
 
-# Claude
+# Agents
 CLAUDE.md
+AGENTS.md

@@ -1,6 +1,8 @@
 package com.c71n93.hat;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -9,5 +11,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        final Button newGameButton = findViewById(R.id.button_new_game);
+        newGameButton.setOnClickListener(view -> startActivity(new Intent(this, GameSettingsActivity.class)));
     }
 }

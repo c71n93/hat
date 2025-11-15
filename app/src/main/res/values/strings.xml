@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">hat</string>
+    <string name="new_game">New Game</string>
+    <string name="game_settings_title">Game Settings</string>
 </resources>
