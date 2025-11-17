@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_game_settings"
+    app:startDestination="@id/gameSettingsFragment">
+
+    <fragment
+        android:id="@+id/gameSettingsFragment"
+        android:name="com.c71n93.hat.ui.gamesettings.GameSettingsFragment"
+        android:label="@string/game_settings_title">
+        <action
+            android:id="@+id/action_gameSettingsFragment_to_gameSummaryFragment"
+            app:destination="@id/gameSummaryFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/gameSummaryFragment"
+        android:name="com.c71n93.hat.ui.gamesettings.GameSummaryFragment"
+        android:label="@string/game_summary_title" />
+
+</navigation>

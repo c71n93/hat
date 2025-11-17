@@ -2,4 +2,10 @@
     <string name="app_name">hat</string>
     <string name="new_game">New Game</string>
     <string name="game_settings_title">Game Settings</string>
+    <string name="game_summary_title">Game Summary</string>
+    <string name="label_number_of_players">Number of players</string>
+    <string name="hint_number_of_players">Enter number of players</string>
+    <string name="button_next">Next</string>
+    <string name="error_number_required">Please enter a number</string>
+    <string name="summary_number_of_players">Number of players: %1$d</string>
 </resources>

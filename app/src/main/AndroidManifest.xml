@@ -13,11 +13,11 @@
         android:theme="@style/Theme.Hat">
 
         <activity
-            android:name=".GameSettingsActivity"
+            android:name=".ui.gamesettings.GameSettingsActivity"
             android:exported="false" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
