@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/gameSettingsFragment"
-        android:name="com.c71n93.hat.ui.gamesettings.GameSettingsFragment"
+        android:name="com.c71n93.hat.ui.game.GameSettingsFragment"
         android:label="@string/game_settings_title">
         <action
             android:id="@+id/action_gameSettingsFragment_to_gameSummaryFragment"
@@ -15,7 +15,7 @@
 
     <fragment
         android:id="@+id/gameSummaryFragment"
-        android:name="com.c71n93.hat.ui.gamesettings.GameSummaryFragment"
+        android:name="com.c71n93.hat.ui.game.GameSummaryFragment"
         android:label="@string/game_summary_title" />
 
 </navigation>

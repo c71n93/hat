@@ -1,4 +1,4 @@
-package com.c71n93.hat.ui.gamesettings;
+package com.c71n93.hat.ui.game;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -30,7 +30,7 @@ public class GameSettingsFragment extends Fragment {
         final EditText playersInput = view.findViewById(R.id.input_number_of_players);
         final Button next = view.findViewById(R.id.button_next);
         next.setOnClickListener(
-                button -> PlayersNumber.tryFromText(playersInput)
+                button -> PlayersNumber.tryFromText(playersInput) // TODO: Figure out how to validate playersInput without static method. Maybe try to use decorator.
                         .ifPresentOrElse(
                                 value -> {
                                     GameViewModel.self(requireActivity()).updatePlayers(value);
