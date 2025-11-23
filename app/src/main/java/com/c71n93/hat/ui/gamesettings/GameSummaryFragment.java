@@ -8,13 +8,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import com.c71n93.hat.model.GameViewModel;
 import com.c71n93.hat.R;
+import com.c71n93.hat.model.GameViewModel;
 
 public class GameSummaryFragment extends Fragment {
     @Nullable
     @Override
-    public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable final Bundle savedInstanceState) {
+    public View onCreateView(
+            @NonNull final LayoutInflater inflater,
+            @Nullable final ViewGroup container,
+            @Nullable final Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_game_summary, container, false);
     }
 
@@ -22,6 +25,13 @@ public class GameSummaryFragment extends Fragment {
     public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         final TextView summaryText = view.findViewById(R.id.text_number_of_players_summary);
-        GameViewModel.self(requireActivity()).game().observe(getViewLifecycleOwner(), game -> summaryText.setText(getString(R.string.summary_number_of_players, game.players().value())));
+        GameViewModel.self(requireActivity())
+                .game()
+                .observe(
+                        getViewLifecycleOwner(),
+                        game -> summaryText.setText(
+                                getString(R.string.summary_number_of_players, game.players().value())
+                        )
+                );
     }
 }

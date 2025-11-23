@@ -12,9 +12,11 @@ public class GameViewModel extends ViewModel {
     public LiveData<Game> game() {
         return game;
     }
+
     public void updatePlayers(final PlayersNumber players) {
         game.setValue(new Game(players));
     }
+
     public static GameViewModel self(final ViewModelStoreOwner owner) {
         return new ViewModelProvider(owner).get(GameViewModel.class);
     }

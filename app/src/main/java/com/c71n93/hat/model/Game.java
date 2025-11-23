@@ -6,9 +6,11 @@ public final class Game {
     public Game(final PlayersNumber players) {
         this.players = players;
     }
+
     public Game(final int players) {
         this(new PlayersNumber(players));
     }
+
     public PlayersNumber players() {
         return players;
     }
