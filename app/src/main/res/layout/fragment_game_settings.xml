@@ -25,6 +25,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/label_number_of_players" />
 
+    <TextView
+        android:id="@+id/label_words_per_player"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/label_words_per_player"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/input_number_of_players" />
+
+    <EditText
+        android:id="@+id/input_number_of_words_per_player"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:inputType="number"
+        android:hint="@string/hint_number_of_words_per_player"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/label_words_per_player" />
+
     <Button
         android:id="@+id/button_next"
         android:layout_width="wrap_content"
@@ -32,6 +53,6 @@
         android:layout_marginTop="24dp"
         android:text="@string/button_next"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/input_number_of_players" />
+        app:layout_constraintTop_toBottomOf="@id/input_number_of_words_per_player" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,7 +5,10 @@
     <string name="game_summary_title">Game Summary</string>
     <string name="label_number_of_players">Number of players</string>
     <string name="hint_number_of_players">Enter number of players</string>
+    <string name="label_words_per_player">Words per player</string>
+    <string name="hint_number_of_words_per_player">Enter words per player</string>
     <string name="button_next">Next</string>
     <string name="error_number_required">Please enter a number</string>
     <string name="summary_number_of_players">Number of players: %1$d</string>
+    <string name="summary_words_per_player">Words per player: %1$d</string>
 </resources>

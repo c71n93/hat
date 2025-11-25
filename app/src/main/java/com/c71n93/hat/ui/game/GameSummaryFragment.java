@@ -24,14 +24,20 @@ public class GameSummaryFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        final TextView summaryText = view.findViewById(R.id.text_number_of_players_summary);
+        final TextView playersSummary = view.findViewById(R.id.text_number_of_players_summary);
+        final TextView wordsSummary = view.findViewById(R.id.text_words_per_player_summary);
         GameViewModel.self(requireActivity())
                 .game()
                 .observe(
                         getViewLifecycleOwner(),
-                        game -> summaryText.setText(
-                                getString(R.string.summary_number_of_players, game.players().value())
-                        )
+                        game -> {
+                            playersSummary.setText(
+                                    getString(R.string.summary_number_of_players, game.players())
+                            );
+                            wordsSummary.setText(
+                                    getString(R.string.summary_words_per_player, game.wordsPerPlayer())
+                            );
+                        }
                 );
     }
 }

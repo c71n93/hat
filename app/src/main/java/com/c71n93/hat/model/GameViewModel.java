@@ -7,14 +7,14 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
 
 public class GameViewModel extends ViewModel {
-    private final MutableLiveData<Game> game = new MutableLiveData<>(new Game(0));
+    private final MutableLiveData<Game> game = new MutableLiveData<>(new Game(0, 0));
 
     public LiveData<Game> game() {
-        return game;
+        return this.game;
     }
 
-    public void updatePlayers(final PlayersNumber players) {
-        game.setValue(new Game(players));
+    public void updateGame(final Game game) {
+        this.game.setValue(game);
     }
 
     public static GameViewModel self(final ViewModelStoreOwner owner) {

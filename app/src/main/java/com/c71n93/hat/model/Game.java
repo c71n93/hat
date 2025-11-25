@@ -1,17 +1,19 @@
 package com.c71n93.hat.model;
 
 public final class Game {
-    private final PlayersNumber players;
+    private final int players;
+    private final int wordsPerPlayer;
 
-    public Game(final PlayersNumber players) {
+    public Game(final int players, final int wordsPerPlayer) {
         this.players = players;
+        this.wordsPerPlayer = wordsPerPlayer;
     }
 
-    public Game(final int players) {
-        this(new PlayersNumber(players));
+    public int players() {
+        return this.players;
     }
 
-    public PlayersNumber players() {
-        return players;
+    public int wordsPerPlayer() {
+        return this.wordsPerPlayer;
     }
 }
