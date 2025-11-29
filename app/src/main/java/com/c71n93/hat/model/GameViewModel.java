@@ -6,8 +6,10 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
 
+import java.util.ArrayList;
+
 public class GameViewModel extends ViewModel {
-    private final MutableLiveData<Game> game = new MutableLiveData<>(new Game(0, 0));
+    private final MutableLiveData<Game> game = new MutableLiveData<>(new Game(new ArrayList<>(), 0));
 
     public LiveData<Game> game() {
         return this.game;

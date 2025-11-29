@@ -1,19 +1,21 @@
 package com.c71n93.hat.model;
 
+import java.util.List;
+
 public final class Game {
-    private final int players;
-    private final int wordsPerPlayer;
+    private final List<Team> teams;
+    private final int wordsTotal;
 
-    public Game(final int players, final int wordsPerPlayer) {
-        this.players = players;
-        this.wordsPerPlayer = wordsPerPlayer;
+    public Game(final List<Team> players, final int wordsPerPlayer) {
+        this.teams = players;
+        this.wordsTotal = wordsPerPlayer;
     }
 
-    public int players() {
-        return this.players;
+    public List<Team> teams() {
+        return this.teams;
     }
 
-    public int wordsPerPlayer() {
-        return this.wordsPerPlayer;
+    public int wordsTotal() {
+        return this.wordsTotal;
     }
 }

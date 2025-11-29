@@ -31,12 +31,10 @@ public class GameSummaryFragment extends Fragment {
                 .observe(
                         getViewLifecycleOwner(),
                         game -> {
-                            playersSummary.setText(
-                                    getString(R.string.summary_number_of_players, game.players())
-                            );
-                            wordsSummary.setText(
-                                    getString(R.string.summary_words_per_player, game.wordsPerPlayer())
-                            );
+                            final String team1 = game.teams().isEmpty() ? "" : game.teams().get(0).name();
+                            final String team2 = game.teams().size() > 1 ? game.teams().get(1).name() : "";
+                            playersSummary.setText(getString(R.string.summary_teams, team1, team2));
+                            wordsSummary.setText(getString(R.string.summary_words_total, game.wordsTotal()));
                         }
                 );
     }

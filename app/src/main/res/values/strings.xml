@@ -3,12 +3,12 @@
     <string name="new_game">New Game</string>
     <string name="game_settings_title">Game Settings</string>
     <string name="game_summary_title">Game Summary</string>
-    <string name="label_number_of_players">Number of players</string>
-    <string name="hint_number_of_players">Enter number of players</string>
-    <string name="label_words_per_player">Words per player</string>
-    <string name="hint_number_of_words_per_player">Enter words per player</string>
+    <string name="label_team1_name">Name for team 1</string>
+    <string name="hint_team_name">Enter the name for your team</string>
+    <string name="label_team2_name">Name for team 2</string>
+    <string name="label_total_words">Total words for the game</string>
+    <string name="hint_total_words">Enter total number of words in the hat</string>
     <string name="button_next">Next</string>
-    <string name="error_number_required">Please enter a number</string>
-    <string name="summary_number_of_players">Number of players: %1$d</string>
-    <string name="summary_words_per_player">Words per player: %1$d</string>
+    <string name="summary_teams">%1$s vs %2$s</string>
+    <string name="summary_words_total">Total words: %1$d</string>
 </resources>
