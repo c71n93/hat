@@ -59,7 +59,7 @@ public class EditStringInputTest {
         Mockito.when(this.mockEditable.toString()).thenReturn("valid");
         final AtomicBoolean actionCalled = new AtomicBoolean(false);
         final AtomicReference<String> capturedValue = new AtomicReference<>();
-        this.input.validOrError(value -> {
+        this.input.ifValidOrMarkError(value -> {
             actionCalled.set(true);
             capturedValue.set(value);
         });
@@ -70,7 +70,7 @@ public class EditStringInputTest {
     public void validOrError_withEmptyInput_showsError() {
         Mockito.when(this.mockEditable.toString()).thenReturn("");
         final AtomicBoolean actionCalled = new AtomicBoolean(false);
-        this.input.validOrError(value -> actionCalled.set(true));
+        this.input.ifValidOrMarkError(value -> actionCalled.set(true));
         Assert.assertFalse("Action should not run for empty input", actionCalled.get());
         Mockito.verify(this.mockEditText).setError("Should not be empty");
     }

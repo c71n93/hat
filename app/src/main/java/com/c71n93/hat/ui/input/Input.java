@@ -8,7 +8,7 @@ public interface Input<T> {
     Result<T, InputError> result();
     void markError(String msg);
 
-    default void validOrError(final Consumer<T> action) {
+    default void ifValidOrMarkError(final Consumer<T> action) {
         this.result().ifOkOrElse(action, error -> error.show());
     }
 }

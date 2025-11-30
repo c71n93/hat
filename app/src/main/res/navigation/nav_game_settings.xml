@@ -9,13 +9,22 @@
         android:name="com.c71n93.hat.ui.game.GameSettingsFragment"
         android:label="@string/game_settings_title">
         <action
-            android:id="@+id/action_gameSettingsFragment_to_gameSummaryFragment"
-            app:destination="@id/gameSummaryFragment" />
+            android:id="@+id/action_gameSettingsFragment_to_hatFillingFragment"
+            app:destination="@id/hatFillingFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/gameSummaryFragment"
-        android:name="com.c71n93.hat.ui.game.GameSummaryFragment"
-        android:label="@string/game_summary_title" />
+        android:id="@+id/hatFillingFragment"
+        android:name="com.c71n93.hat.ui.game.HatFillingFragment"
+        android:label="@string/hat_filling_title">
+        <action
+            android:id="@+id/action_hatFillingFragment_to_gameStartFragment"
+            app:destination="@id/gameStartFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/gameStartFragment"
+        android:name="com.c71n93.hat.ui.game.GameStartFragment"
+        android:label="@string/game_start_title" />
 
 </navigation>

@@ -40,6 +40,7 @@ public class DefaultInputsValidation<T> implements InputsValidation<T> {
                     err.error().show();
                     allValid = false;
                 }
+                default -> throw new IllegalStateException("Unknown result type: " + result.getClass());
             }
         }
         return allValid ? Optional.of(values) : Optional.empty();

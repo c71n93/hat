@@ -64,7 +64,7 @@ public class GameSettingsFragment extends Fragment {
                         GameViewModel.self(requireActivity())
                                 .updateGame(new Game(teams.get(), words.get()));
                         Navigation.findNavController(button)
-                                .navigate(R.id.action_gameSettingsFragment_to_gameSummaryFragment);
+                                .navigate(R.id.action_gameSettingsFragment_to_hatFillingFragment);
                     }
                 }
         );

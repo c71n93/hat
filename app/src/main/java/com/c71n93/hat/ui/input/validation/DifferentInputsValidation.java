@@ -17,6 +17,7 @@ import java.util.function.Consumer;
  * different.
  */
 public class DifferentInputsValidation<T> implements InputsValidation<T> {
+    private static final int MIN_DUPLICATE_COUNT = 2;
     private final List<Input<T>> inputs;
 
     @SafeVarargs
@@ -42,6 +43,7 @@ public class DifferentInputsValidation<T> implements InputsValidation<T> {
                     err.error().show();
                     allValid = false;
                 }
+                default -> throw new IllegalStateException("Unknown result type: " + result.getClass());
             }
         }
         if (!allValid) {
@@ -53,7 +55,7 @@ public class DifferentInputsValidation<T> implements InputsValidation<T> {
         }
         boolean hasDuplicates = false;
         for (final List<Input<T>> bucket : buckets.values()) {
-            if (bucket.size() > 1) {
+            if (bucket.size() >= MIN_DUPLICATE_COUNT) {
                 hasDuplicates = true;
                 bucket.forEach(input -> input.markError("Should not be duplicated"));
             }
