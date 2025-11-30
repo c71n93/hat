@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+
 import com.c71n93.hat.R;
 import com.c71n93.hat.model.Game;
 import com.c71n93.hat.model.GameViewModel;
@@ -23,30 +24,36 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class GameSettingsFragment extends Fragment {
+    private LayoutInflater layoutInflater;
+
     @Nullable
     @Override
     public View onCreateView(
             @NonNull final LayoutInflater inflater,
             @Nullable final ViewGroup container,
             @Nullable final Bundle savedInstanceState) {
+        this.layoutInflater = inflater;
         return inflater.inflate(R.layout.fragment_game_settings, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        final EditStringInput team1Input = new EditStringInput(view.findViewById(R.id.input_team1_name));
-        final EditStringInput team2Input = new EditStringInput(
-                view.findViewById(R.id.input_team2_name)
-        );
+        final MultipleTeamInputViews teamInputViews = new MultipleTeamInputViews(
+                this.layoutInflater, view.findViewById(R.id.container_team_inputs)
+        ).addInput().addInput();
         final EditIntInput totalWordsInput = new EditIntInput(view.findViewById(R.id.input_total_words));
+        view.findViewById(R.id.button_add_team).setOnClickListener(
+                button -> teamInputViews.addInput()
+        );
         view.findViewById(R.id.button_next).setOnClickListener(
                 button -> {
                     // TODO: maybe it will be useful to implement TeamInputsValidation
-                    final Optional<List<Team>> teams = new DifferentInputsValidation<>(team1Input, team2Input)
-                            .validated().map(
-                                    names -> names.stream().map(Team::new).collect(Collectors.toList())
-                            );
+                    final Optional<List<Team>> teams = new DifferentInputsValidation<>(
+                            teamInputViews.inputs().toArray(new EditStringInput[0])
+                    ).validated().map(
+                            names -> names.stream().map(Team::new).collect(Collectors.toList())
+                    );
                     // TODO: maybe it will be useful to implement WordsNumInputsValidation
                     final Optional<Integer> words = new DefaultInputsValidation<>(totalWordsInput).validated().map(
                             numbers -> numbers.get(0)
