@@ -5,15 +5,15 @@ import java.util.function.Consumer;
 public sealed interface Result<T, E> permits Result.Ok, Result.Err {
     boolean isOk();
     default boolean isErr() {
-        return !isOk();
+        return !this.isOk();
     }
     T unwrap();
-    void ifOkOrElse(Consumer<? super T> action, Consumer<? super E> errorAction);
+    void ifOkOrElse(final Consumer<? super T> action, final Consumer<? super E> errorAction);
 
-    static <T, E> Result<T, E> ok(T value) {
+    static <T, E> Result<T, E> ok(final T value) {
         return new Ok<>(value);
     }
-    static <T, E> Result<T, E> err(E error) {
+    static <T, E> Result<T, E> err(final E error) {
         return new Err<>(error);
     }
 
@@ -24,11 +24,11 @@ public sealed interface Result<T, E> permits Result.Ok, Result.Err {
         }
         @Override
         public T unwrap() {
-            return value;
+            return this.value;
         }
         @Override
-        public void ifOkOrElse(Consumer<? super T> action, Consumer<? super E> errorAction) {
-            action.accept(value);
+        public void ifOkOrElse(final Consumer<? super T> action, final Consumer<? super E> errorAction) {
+            action.accept(this.value);
         }
     }
 
@@ -42,8 +42,8 @@ public sealed interface Result<T, E> permits Result.Ok, Result.Err {
             throw new IllegalStateException("Cannot unwrap Err result");
         }
         @Override
-        public void ifOkOrElse(Consumer<? super T> action, Consumer<? super E> errorAction) {
-            errorAction.accept(error);
+        public void ifOkOrElse(final Consumer<? super T> action, final Consumer<? super E> errorAction) {
+            errorAction.accept(this.error);
         }
     }
 }

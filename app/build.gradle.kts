@@ -1,5 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
+    id("checkstyle")
+    id("pmd")
 }
 
 android {
@@ -31,8 +33,60 @@ android {
     }
 }
 
-dependencies {
+checkstyle {
+    toolVersion = "11.0.1"
+    config = resources.text.fromFile(rootProject.file("config/checkstyle/checkstyle.xml"))
+    configProperties["cache.file"] = file("$buildDir/checkstyle/cache").absolutePath
+}
 
+pmd {
+    toolVersion = "6.55.0"
+    ruleSetFiles = files(rootProject.file("config/pmd/pmd.xml"))
+    ruleSets = listOf()
+}
+
+tasks.register<Checkstyle>("checkstyleMain") {
+    description = "Checkstyle for main sources."
+    group = "verification"
+    source(android.sourceSets["main"].java.srcDirs)
+    include("**/*.java")
+    classpath = files()
+}
+
+tasks.register<Checkstyle>("checkstyleTest") {
+    description = "Checkstyle for test sources."
+    group = "verification"
+    source(android.sourceSets["test"].java.srcDirs)
+    include("**/*.java")
+    classpath = files()
+}
+
+tasks.register<Pmd>("pmdMain") {
+    description = "PMD for main sources."
+    group = "verification"
+    source(android.sourceSets["main"].java.srcDirs)
+    include("**/*.java")
+    classpath = files()
+}
+
+tasks.register<Pmd>("pmdTest") {
+    description = "PMD for test sources."
+    group = "verification"
+    source(android.sourceSets["test"].java.srcDirs)
+    include("**/*.java")
+    classpath = files()
+}
+
+tasks.named("check") {
+    dependsOn(
+        "checkstyleMain",
+        "checkstyleTest",
+        "pmdMain",
+        "pmdTest"
+    )
+}
+
+dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.lifecycle.viewmodel)

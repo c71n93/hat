@@ -9,6 +9,6 @@ public interface Input<T> {
     void markError(String msg);
 
     default void validOrError(final Consumer<T> action) {
-        result().ifOkOrElse(action, error -> error.show());
+        this.result().ifOkOrElse(action, error -> error.show());
     }
 }

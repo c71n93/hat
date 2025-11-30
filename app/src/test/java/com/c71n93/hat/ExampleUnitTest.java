@@ -1,7 +1,6 @@
 package com.c71n93.hat;
 
-import static org.junit.Assert.*;
-
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -13,6 +12,6 @@ import org.junit.Test;
 public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
+        Assert.assertEquals("2 + 2 should equal 4", 4, 2 + 2);
     }
 }

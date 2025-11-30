@@ -17,7 +17,6 @@ import com.c71n93.hat.ui.input.EditIntInput;
 import com.c71n93.hat.ui.input.EditStringInput;
 import com.c71n93.hat.ui.input.validation.DefaultInputsValidation;
 import com.c71n93.hat.ui.input.validation.DifferentInputsValidation;
-import com.c71n93.hat.ui.input.validation.InputsValidation;
 
 import java.util.List;
 import java.util.Optional;
@@ -49,7 +48,7 @@ public class GameSettingsFragment extends Fragment {
                                     names -> names.stream().map(Team::new).collect(Collectors.toList())
                             );
                     // TODO: maybe it will be useful to implement WordsNumInputsValidation
-                    Optional<Integer> words = new DefaultInputsValidation<>(totalWordsInput).validated().map(
+                    final Optional<Integer> words = new DefaultInputsValidation<>(totalWordsInput).validated().map(
                             numbers -> numbers.get(0)
                     );
                     // TODO: it definitely may be implemented more elegant using something like

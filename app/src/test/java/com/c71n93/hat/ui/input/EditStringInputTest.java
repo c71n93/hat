@@ -1,108 +1,97 @@
 package com.c71n93.hat.ui.input;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
 import android.text.Editable;
 import android.widget.EditText;
-
 import com.c71n93.hat.ui.input.error.InputError;
-
-import org.junit.Before;
-import org.junit.Test;
-
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mockito;
 
 /**
  * Unit tests for {@link EditStringInput}.
  */
 public class EditStringInputTest {
-    private EditText mockEditText;
-    private Editable mockEditable;
-    private EditStringInput input;
+    private final EditText mockEditText = Mockito.mock(EditText.class);
+    private final Editable mockEditable = Mockito.mock(Editable.class);
+    private final EditStringInput input = new EditStringInput(this.mockEditText);
     @Before
     public void setUp() {
-        mockEditText = mock(EditText.class);
-        mockEditable = mock(Editable.class);
-        when(mockEditText.getText()).thenReturn(mockEditable);
-        input = new EditStringInput(mockEditText);
+        Mockito.when(this.mockEditText.getText()).thenReturn(this.mockEditable);
     }
     @Test
     public void result_withNonEmptyText_returnsOk() {
-        when(mockEditable.toString()).thenReturn("valid text");
-        final Result<String, InputError> result = input.result();
-        assertTrue(result.isOk());
-        assertEquals("valid text", result.unwrap());
+        Mockito.when(this.mockEditable.toString()).thenReturn("valid text");
+        final Result<String, InputError> result = this.input.result();
+        Assert.assertTrue("Non-empty text should be ok", result.isOk());
+        Assert.assertEquals("Should return original text", "valid text", result.unwrap());
     }
     @Test
     public void result_withEmptyText_returnsErr() {
-        when(mockEditable.toString()).thenReturn("");
-        final Result<String, InputError> result = input.result();
-        assertTrue(result.isErr());
+        Mockito.when(this.mockEditable.toString()).thenReturn("");
+        final Result<String, InputError> result = this.input.result();
+        Assert.assertTrue("Empty text should be error", result.isErr());
     }
     @Test
     public void result_withWhitespaceText_returnsOk() {
-        when(mockEditable.toString()).thenReturn("  whitespace  ");
-        final Result<String, InputError> result = input.result();
-        assertTrue(result.isOk());
-        assertEquals("  whitespace  ", result.unwrap());
+        Mockito.when(this.mockEditable.toString()).thenReturn("  whitespace  ");
+        final Result<String, InputError> result = this.input.result();
+        Assert.assertTrue("Whitespace text should be ok", result.isOk());
+        Assert.assertEquals("Should keep whitespace", "  whitespace  ", result.unwrap());
     }
     @Test
     public void result_withSingleCharacter_returnsOk() {
-        when(mockEditable.toString()).thenReturn("a");
-        final Result<String, InputError> result = input.result();
-        assertTrue(result.isOk());
-        assertEquals("a", result.unwrap());
+        Mockito.when(this.mockEditable.toString()).thenReturn("a");
+        final Result<String, InputError> result = this.input.result();
+        Assert.assertTrue("Single character should be ok", result.isOk());
+        Assert.assertEquals("Should unwrap single character", "a", result.unwrap());
     }
     @Test
     public void markError_callsSetErrorOnEditText() {
         final String errorMessage = "Error message";
-        input.markError(errorMessage);
-        verify(mockEditText).setError(errorMessage);
+        this.input.markError(errorMessage);
+        Mockito.verify(this.mockEditText).setError(errorMessage);
     }
     @Test
     public void validOrError_withValidInput_executesAction() {
-        when(mockEditable.toString()).thenReturn("valid");
+        Mockito.when(this.mockEditable.toString()).thenReturn("valid");
         final AtomicBoolean actionCalled = new AtomicBoolean(false);
         final AtomicReference<String> capturedValue = new AtomicReference<>();
-        input.validOrError(value -> {
+        this.input.validOrError(value -> {
             actionCalled.set(true);
             capturedValue.set(value);
         });
-        assertTrue(actionCalled.get());
-        assertEquals("valid", capturedValue.get());
+        Assert.assertTrue("Action should be called for valid input", actionCalled.get());
+        Assert.assertEquals("Captured value should match input", "valid", capturedValue.get());
     }
     @Test
     public void validOrError_withEmptyInput_showsError() {
-        when(mockEditable.toString()).thenReturn("");
+        Mockito.when(this.mockEditable.toString()).thenReturn("");
         final AtomicBoolean actionCalled = new AtomicBoolean(false);
-        input.validOrError(value -> actionCalled.set(true));
-        assertFalse(actionCalled.get());
-        verify(mockEditText).setError("Should not be empty");
+        this.input.validOrError(value -> actionCalled.set(true));
+        Assert.assertFalse("Action should not run for empty input", actionCalled.get());
+        Mockito.verify(this.mockEditText).setError("Should not be empty");
     }
     @Test
     public void result_multipleCallsWithSameState_returnsSameValue() {
-        when(mockEditable.toString()).thenReturn("test");
-        final Result<String, InputError> result1 = input.result();
-        final Result<String, InputError> result2 = input.result();
-        assertTrue(result1.isOk());
-        assertTrue(result2.isOk());
-        assertEquals(result1.unwrap(), result2.unwrap());
+        Mockito.when(this.mockEditable.toString()).thenReturn("test");
+        final Result<String, InputError> result1 = this.input.result();
+        final Result<String, InputError> result2 = this.input.result();
+        Assert.assertTrue("First call should be ok", result1.isOk());
+        Assert.assertTrue("Second call should be ok", result2.isOk());
+        Assert.assertEquals("Unwrapped values should match", result1.unwrap(), result2.unwrap());
     }
     @Test
     public void result_multipleCallsWithDifferentState_returnsDifferentValues() {
-        when(mockEditable.toString()).thenReturn("first");
-        final Result<String, InputError> result1 = input.result();
-        when(mockEditable.toString()).thenReturn("second");
-        final Result<String, InputError> result2 = input.result();
-        assertTrue(result1.isOk());
-        assertTrue(result2.isOk());
-        assertEquals("first", result1.unwrap());
-        assertEquals("second", result2.unwrap());
+        Mockito.when(this.mockEditable.toString()).thenReturn("first");
+        final Result<String, InputError> result1 = this.input.result();
+        Mockito.when(this.mockEditable.toString()).thenReturn("second");
+        final Result<String, InputError> result2 = this.input.result();
+        Assert.assertTrue("First call should be ok", result1.isOk());
+        Assert.assertTrue("Second call should be ok", result2.isOk());
+        Assert.assertEquals("First value should match stub", "first", result1.unwrap());
+        Assert.assertEquals("Second value should match stub", "second", result2.unwrap());
     }
 }

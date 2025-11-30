@@ -1,15 +1,12 @@
 package com.c71n93.hat.ui.input.validation;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
 import com.c71n93.hat.ui.input.Result;
 import com.c71n93.hat.ui.input.validation.fakes.FakeRecordingError;
 import com.c71n93.hat.ui.input.validation.fakes.FakeRecordingInput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import org.junit.Assert;
 import org.junit.Test;
 
 public final class DefaultInputsValidationTest {
@@ -18,10 +15,10 @@ public final class DefaultInputsValidationTest {
         final FakeRecordingInput<Integer> first = new FakeRecordingInput<>(Result.ok(1));
         final FakeRecordingInput<Integer> second = new FakeRecordingInput<>(Result.ok(2));
         final Optional<List<Integer>> values = new DefaultInputsValidation<>(first, second).validated();
-        assertTrue(values.isPresent());
-        assertEquals(List.of(1, 2), values.get());
-        assertTrue(first.markedError().isEmpty());
-        assertTrue(second.markedError().isEmpty());
+        Assert.assertTrue("All valid inputs should be present", values.isPresent());
+        Assert.assertEquals("Values should match", List.of(1, 2), values.get());
+        Assert.assertTrue("First input should have no errors", first.markedError().isEmpty());
+        Assert.assertTrue("Second input should have no errors", second.markedError().isEmpty());
     }
 
     @Test
@@ -30,9 +27,9 @@ public final class DefaultInputsValidationTest {
         final FakeRecordingInput<Integer> invalid = new FakeRecordingInput<>(Result.err(error));
         final FakeRecordingInput<Integer> valid = new FakeRecordingInput<>(Result.ok(5));
         final Optional<List<Integer>> values = new DefaultInputsValidation<>(invalid, valid).validated();
-        assertFalse(values.isPresent());
-        assertEquals(1, error.timesShown());
-        assertTrue(valid.markedError().isEmpty());
+        Assert.assertFalse("Invalid input should make result empty", values.isPresent());
+        Assert.assertEquals("Error should be shown once", 1, error.timesShown());
+        Assert.assertTrue("Valid input should have no errors", valid.markedError().isEmpty());
     }
 
     @Test
@@ -41,7 +38,7 @@ public final class DefaultInputsValidationTest {
         final FakeRecordingInput<Integer> second = new FakeRecordingInput<>(Result.ok(4));
         final List<List<Integer>> collected = new ArrayList<>();
         new DefaultInputsValidation<>(first, second).ifValidOr(collected::add);
-        assertEquals(1, collected.size());
-        assertEquals(List.of(3, 4), collected.get(0));
+        Assert.assertEquals("Action should be called once", 1, collected.size());
+        Assert.assertEquals("Action should receive values", List.of(3, 4), collected.get(0));
     }
 }

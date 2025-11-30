@@ -6,7 +6,7 @@ public abstract class EditTextInput<T> implements Input<T> {
     protected final EditText txt;
 
     @Override
-    public void markError(String msg) {
+    public void markError(final String msg) {
         this.txt.setError(msg);
     }
 

@@ -12,7 +12,7 @@ spotless {
     }
     format("xml") {
         target("**/*.xml")
-        targetExclude("**/build/**")
+        targetExclude("**/build/**", "**/.*/**")
         trimTrailingWhitespace()
         indentWithSpaces(4)
         endWithNewline()

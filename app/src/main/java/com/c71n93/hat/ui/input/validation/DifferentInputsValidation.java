@@ -1,7 +1,5 @@
 package com.c71n93.hat.ui.input.validation;
 
-import android.graphics.Path;
-
 import com.c71n93.hat.ui.input.Input;
 import com.c71n93.hat.ui.input.Result;
 import com.c71n93.hat.ui.input.error.InputError;
@@ -27,7 +25,7 @@ public class DifferentInputsValidation<T> implements InputsValidation<T> {
     }
 
     @Override
-    public void ifValidOr(Consumer<List<T>> action) {
+    public void ifValidOr(final Consumer<List<T>> action) {
         this.validated().ifPresent(action);
     }
 
@@ -49,12 +47,10 @@ public class DifferentInputsValidation<T> implements InputsValidation<T> {
         if (!allValid) {
             return Optional.empty();
         }
-
         final Map<T, List<Input<T>>> buckets = new HashMap<>();
         for (final Entry<T> entry : validated) {
             buckets.computeIfAbsent(entry.value, key -> new ArrayList<>()).add(entry.input);
         }
-
         boolean hasDuplicates = false;
         for (final List<Input<T>> bucket : buckets.values()) {
             if (bucket.size() > 1) {
