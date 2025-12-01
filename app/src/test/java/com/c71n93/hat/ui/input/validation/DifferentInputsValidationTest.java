@@ -28,10 +28,10 @@ public final class DifferentInputsValidationTest {
         final Optional<List<String>> result = new DifferentInputsValidation<>(first, second).validated();
         Assert.assertFalse("Duplicates should produce empty result", result.isPresent());
         Assert.assertEquals(
-                "First input should be marked duplicate", Optional.of("Should not be duplicated"), first.markedError()
+            "First input should be marked duplicate", Optional.of("Should not be duplicated"), first.markedError()
         );
         Assert.assertEquals(
-                "Second input should be marked duplicate", Optional.of("Should not be duplicated"), second.markedError()
+            "Second input should be marked duplicate", Optional.of("Should not be duplicated"), second.markedError()
         );
     }
 

@@ -17,8 +17,8 @@ public class EditIntInput extends EditTextInput<Integer> {
             // TODO: error message strings may be duplicated. To figure out how to use
             // Fragment::getString method from here to access R.string.some_str.
             return text.isEmpty()
-                    ? Result.err(new EditTextInputError(this.txt, "Should not be empty."))
-                    : Result.ok(Integer.valueOf(text));
+                ? Result.err(new EditTextInputError(this.txt, "Should not be empty."))
+                : Result.ok(Integer.valueOf(text));
         } catch (final NumberFormatException ignored) {
             return Result.err(new EditTextInputError(txt, "Please enter correct number."));
         }

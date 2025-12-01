@@ -29,9 +29,9 @@ public class GameSettingsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(
-            @NonNull final LayoutInflater inflater,
-            @Nullable final ViewGroup container,
-            @Nullable final Bundle savedInstanceState) {
+        @NonNull final LayoutInflater inflater,
+        @Nullable final ViewGroup container,
+        @Nullable final Bundle savedInstanceState) {
         this.layoutInflater = inflater;
         return inflater.inflate(R.layout.fragment_game_settings, container, false);
     }
@@ -40,33 +40,33 @@ public class GameSettingsFragment extends Fragment {
     public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         final MultipleTeamInputViews teamInputViews = new MultipleTeamInputViews(
-                this.layoutInflater, view.findViewById(R.id.container_team_inputs)
+            this.layoutInflater, view.findViewById(R.id.container_team_inputs)
         ).addInput().addInput();
         final EditIntInput totalWordsInput = new EditIntInput(view.findViewById(R.id.input_total_words));
         view.findViewById(R.id.button_add_team).setOnClickListener(
-                button -> teamInputViews.addInput()
+            button -> teamInputViews.addInput()
         );
         view.findViewById(R.id.button_next).setOnClickListener(
-                button -> {
-                    // TODO: maybe it will be useful to implement TeamInputsValidation
-                    final Optional<List<Team>> teams = new DifferentInputsValidation<>(
-                            teamInputViews.inputs().toArray(new EditStringInput[0])
-                    ).validated().map(
-                            names -> names.stream().map(Team::new).collect(Collectors.toList())
-                    );
-                    // TODO: maybe it will be useful to implement WordsNumInputsValidation
-                    final Optional<Integer> words = new DefaultInputsValidation<>(totalWordsInput).validated().map(
-                            numbers -> numbers.get(0)
-                    );
-                    // TODO: it definitely may be implemented more elegant using something like
-                    // "InputCombination"
-                    if (teams.isPresent() && words.isPresent()) {
-                        GameViewModel.self(requireActivity())
-                                .updateGame(new Game(teams.get(), words.get()));
-                        Navigation.findNavController(button)
-                                .navigate(R.id.action_gameSettingsFragment_to_hatFillingFragment);
-                    }
+            button -> {
+                // TODO: maybe it will be useful to implement TeamInputsValidation
+                final Optional<List<Team>> teams = new DifferentInputsValidation<>(
+                    teamInputViews.inputs().toArray(new EditStringInput[0])
+                ).validated().map(
+                    names -> names.stream().map(Team::new).collect(Collectors.toList())
+                );
+                // TODO: maybe it will be useful to implement WordsNumInputsValidation
+                final Optional<Integer> words = new DefaultInputsValidation<>(totalWordsInput).validated().map(
+                    numbers -> numbers.get(0)
+                );
+                // TODO: it definitely may be implemented more elegant using something like
+                // "InputCombination"
+                if (teams.isPresent() && words.isPresent()) {
+                    GameViewModel.self(requireActivity())
+                        .updateGame(new Game(teams.get(), words.get()));
+                    Navigation.findNavController(button)
+                        .navigate(R.id.action_gameSettingsFragment_to_hatFillingFragment);
                 }
+            }
         );
     }
 }

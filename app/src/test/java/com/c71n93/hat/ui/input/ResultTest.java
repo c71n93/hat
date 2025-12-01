@@ -33,8 +33,8 @@ public class ResultTest {
         final AtomicBoolean okCalled = new AtomicBoolean(false);
         final AtomicBoolean errCalled = new AtomicBoolean(false);
         result.ifOkOrElse(
-                value -> okCalled.set(true),
-                error -> errCalled.set(true)
+            value -> okCalled.set(true),
+            error -> errCalled.set(true)
         );
         Assert.assertTrue("Ok action should run", okCalled.get());
         Assert.assertFalse("Error action should not run", errCalled.get());
@@ -45,9 +45,9 @@ public class ResultTest {
         final Result<String, String> result = Result.ok(expected);
         final AtomicReference<String> captured = new AtomicReference<>();
         result.ifOkOrElse(
-                value -> captured.set(value),
-                error -> {
-                }
+            value -> captured.set(value),
+            error -> {
+            }
         );
         Assert.assertEquals("Ok action should receive value", expected, captured.get());
     }
@@ -65,9 +65,9 @@ public class ResultTest {
     public void errResult_unwrap_throwsIllegalStateException() {
         final Result<String, String> result = Result.err(ERROR);
         final IllegalStateException exception = Assert.assertThrows(
-                "Unwrapping Err should throw",
-                IllegalStateException.class,
-                result::unwrap
+            "Unwrapping Err should throw",
+            IllegalStateException.class,
+            result::unwrap
         );
         Assert.assertEquals("Exception message should match", "Cannot unwrap Err result", exception.getMessage());
     }
@@ -77,8 +77,8 @@ public class ResultTest {
         final AtomicBoolean okCalled = new AtomicBoolean(false);
         final AtomicBoolean errCalled = new AtomicBoolean(false);
         result.ifOkOrElse(
-                value -> okCalled.set(true),
-                error -> errCalled.set(true)
+            value -> okCalled.set(true),
+            error -> errCalled.set(true)
         );
         Assert.assertFalse("Ok action should not run", okCalled.get());
         Assert.assertTrue("Error action should run", errCalled.get());
@@ -89,9 +89,9 @@ public class ResultTest {
         final Result<String, String> result = Result.err(expected);
         final AtomicReference<String> captured = new AtomicReference<>();
         result.ifOkOrElse(
-                value -> {
-                },
-                error -> captured.set(error)
+            value -> {
+            },
+            error -> captured.set(error)
         );
         Assert.assertEquals("Error action should receive error", expected, captured.get());
     }
@@ -107,9 +107,9 @@ public class ResultTest {
         Assert.assertTrue("Err result should report error", result.isErr());
         final AtomicReference<String> captured = new AtomicReference<>();
         result.ifOkOrElse(
-                value -> {
-                },
-                error -> captured.set(error)
+            value -> {
+            },
+            error -> captured.set(error)
         );
         Assert.assertEquals("Should pass through error message", "error message", captured.get());
     }

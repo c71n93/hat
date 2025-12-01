@@ -24,7 +24,7 @@ public class DefaultInputsValidation<T> implements InputsValidation<T> {
     @Override
     public void ifValidOr(final Consumer<List<T>> action) {
         this.validated().ifPresent(
-                action
+            action
         );
     }
 

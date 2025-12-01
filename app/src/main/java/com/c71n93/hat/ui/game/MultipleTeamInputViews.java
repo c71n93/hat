@@ -32,9 +32,9 @@ public class MultipleTeamInputViews {
 
     public MultipleTeamInputViews addInput() {
         final View view = this.layoutInflater.inflate(
-                R.layout.view_team_input,
-                this.teamsContainer,
-                false
+            R.layout.view_team_input,
+            this.teamsContainer,
+            false
         );
         final TextView label = view.findViewById(R.id.label_team_name);
         final int teamNumber = this.inputs.size() + 1;

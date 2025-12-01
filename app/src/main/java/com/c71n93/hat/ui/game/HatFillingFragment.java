@@ -19,9 +19,9 @@ public class HatFillingFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(
-            @NonNull final LayoutInflater inflater,
-            @Nullable final ViewGroup container,
-            @Nullable final Bundle savedInstanceState) {
+        @NonNull final LayoutInflater inflater,
+        @Nullable final ViewGroup container,
+        @Nullable final Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_hat_filling, container, false);
     }
 
@@ -30,27 +30,23 @@ public class HatFillingFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         final EditStringInput wordInput = new EditStringInput(view.findViewById(R.id.input_word));
         final View addWordButton = view.findViewById(R.id.button_add_word);
-        // TODO: fix indentations in spotless config.
         // TODO: implement countdown for words.
-        GameViewModel.self(requireActivity())
-                .game()
-                .observe(
-                        getViewLifecycleOwner(),
-                        game -> {
-                            final Words words = new Words(game.wordsTotal());
-                            addWordButton.setOnClickListener(
-                                    button -> wordInput.ifValidOrMarkError(
-                                            word -> {
-                                                if (!words.tryPut(new Word(word))) {
-                                                    Navigation.findNavController(button)
-                                                            .navigate(
-                                                                    R.id.action_hatFillingFragment_to_gameStartFragment
-                                                            );
-                                                }
-                                            }
-                                    )
-                            );
+        GameViewModel.self(requireActivity()).game().observe(
+            getViewLifecycleOwner(),
+            game -> {
+                final Words words = new Words(game.wordsTotal());
+                addWordButton.setOnClickListener(
+                    button -> wordInput.ifValidOrMarkError(
+                        word -> {
+                            if (!words.tryPut(new Word(word))) {
+                                Navigation.findNavController(button).navigate(
+                                    R.id.action_hatFillingFragment_to_gameStartFragment
+                                );
+                            }
                         }
+                    )
                 );
+            }
+        );
     }
 }
