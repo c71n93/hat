@@ -25,6 +25,16 @@
         android:inputType="textNoSuggestions"
         app:layout_constraintTop_toBottomOf="@+id/label_word" />
 
+    <TextView
+        android:id="@+id/text_words_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_word"
+        tools:text="@string/label_words_left" />
+
     <Button
         android:id="@+id/button_add_word"
         android:layout_width="0dp"
@@ -32,6 +42,6 @@
         android:text="@string/button_add_word"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_word" />
+        app:layout_constraintTop_toBottomOf="@+id/text_words_left" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

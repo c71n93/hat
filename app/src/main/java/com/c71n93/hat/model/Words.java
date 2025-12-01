@@ -11,10 +11,11 @@ public class Words {
         this.items = new ArrayList<>(totalWords);
     }
 
-    public void put(final Word word) {
+    public Words with(final Word word) {
         if (!this.tryPut(word)) {
             throw new IllegalStateException("Words are full.");
         }
+        return this;
     }
 
     public boolean tryPut(final Word word) {
@@ -23,5 +24,21 @@ public class Words {
         }
         this.items.add(word);
         return true;
+    }
+
+    public void ifFullOrElse(final Runnable actionFull, final Runnable actionElse) {
+        if (this.isFull()) {
+            actionFull.run();
+        } else {
+            actionElse.run();
+        }
+    }
+
+    public boolean isFull() {
+        return this.untilFull() == 0;
+    }
+
+    public int untilFull() {
+        return this.total - this.items.size();
     }
 }

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,22 +29,23 @@ public class HatFillingFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        // TODO: make the word disappear after user enters it.
         final EditStringInput wordInput = new EditStringInput(view.findViewById(R.id.input_word));
         final View addWordButton = view.findViewById(R.id.button_add_word);
-        // TODO: implement countdown for words.
+        final TextView wordsLeft = view.findViewById(R.id.text_words_left);
         GameViewModel.self(requireActivity()).game().observe(
             getViewLifecycleOwner(),
             game -> {
                 final Words words = new Words(game.wordsTotal());
+                wordsLeft.setText(getString(R.string.label_words_left, words.untilFull()));
                 addWordButton.setOnClickListener(
                     button -> wordInput.ifValidOrMarkError(
-                        word -> {
-                            if (!words.tryPut(new Word(word))) {
-                                Navigation.findNavController(button).navigate(
-                                    R.id.action_hatFillingFragment_to_gameStartFragment
-                                );
-                            }
-                        }
+                        word -> words.with(new Word(word)).ifFullOrElse(
+                            () -> Navigation.findNavController(button).navigate(
+                                R.id.action_hatFillingFragment_to_gameStartFragment
+                            ),
+                            () -> wordsLeft.setText(getString(R.string.label_words_left, words.untilFull()))
+                        )
                     )
                 );
             }
