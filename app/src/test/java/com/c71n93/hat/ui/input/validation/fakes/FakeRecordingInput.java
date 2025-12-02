@@ -8,6 +8,7 @@ import java.util.Optional;
 public final class FakeRecordingInput<T> implements Input<T> {
     private final Result<T, InputError> next;
     private Optional<String> marked = Optional.empty();
+    private boolean cleared;
 
     public FakeRecordingInput(final Result<T, InputError> next) {
         this.next = next;
@@ -23,7 +24,17 @@ public final class FakeRecordingInput<T> implements Input<T> {
         this.marked = Optional.of(msg);
     }
 
+    @Override
+    public void clear() {
+        this.marked = Optional.empty();
+        this.cleared = true;
+    }
+
     public Optional<String> markedError() {
         return this.marked;
+    }
+
+    public boolean cleared() {
+        return this.cleared;
     }
 }

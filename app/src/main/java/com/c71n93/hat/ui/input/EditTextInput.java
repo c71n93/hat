@@ -13,4 +13,9 @@ public abstract class EditTextInput<T> implements Input<T> {
     public EditTextInput(final EditText txt) {
         this.txt = txt;
     }
+
+    @Override
+    public void clear() {
+        this.txt.setText("");
+    }
 }

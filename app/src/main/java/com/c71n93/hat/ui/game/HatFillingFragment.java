@@ -29,7 +29,6 @@ public class HatFillingFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        // TODO: make the word disappear after user enters it.
         final EditStringInput wordInput = new EditStringInput(view.findViewById(R.id.input_word));
         final View addWordButton = view.findViewById(R.id.button_add_word);
         final TextView wordsLeft = view.findViewById(R.id.text_words_left);
@@ -40,12 +39,15 @@ public class HatFillingFragment extends Fragment {
                 wordsLeft.setText(getString(R.string.label_words_left, words.untilFull()));
                 addWordButton.setOnClickListener(
                     button -> wordInput.ifValidOrMarkError(
-                        word -> words.with(new Word(word)).ifFullOrElse(
-                            () -> Navigation.findNavController(button).navigate(
-                                R.id.action_hatFillingFragment_to_gameStartFragment
-                            ),
-                            () -> wordsLeft.setText(getString(R.string.label_words_left, words.untilFull()))
-                        )
+                        word -> {
+                            words.with(new Word(word)).ifFullOrElse(
+                                () -> Navigation.findNavController(button).navigate(
+                                    R.id.action_hatFillingFragment_to_gameStartFragment
+                                ),
+                                () -> wordsLeft.setText(getString(R.string.label_words_left, words.untilFull()))
+                            );
+                            wordInput.clear();
+                        }
                     )
                 );
             }
