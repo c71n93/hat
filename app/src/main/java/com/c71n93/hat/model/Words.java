@@ -1,11 +1,17 @@
 package com.c71n93.hat.model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public class Words {
+public class Words implements Iterable<Word> {
     private final int total;
     private final List<Word> items;
+
+    public Words() {
+        this(0);
+    }
+
     public Words(final int totalWords) {
         this.total = totalWords;
         this.items = new ArrayList<>(totalWords);
@@ -40,5 +46,14 @@ public class Words {
 
     public int untilFull() {
         return this.total - this.items.size();
+    }
+
+    public int total() {
+        return this.total;
+    }
+
+    @Override
+    public Iterator<Word> iterator() {
+        return this.items.iterator();
     }
 }

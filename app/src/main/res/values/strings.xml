@@ -12,6 +12,7 @@
     <string name="label_word">Your word</string>
     <string name="hint_word">Enter new word</string>
     <string name="label_words_left">Words left: %1$d</string>
+    <string name="game_start_words_ready">Words ready: %1$d</string>
     <!--    Buttons    -->
     <string name="button_new_game">New Game</string>
     <string name="button_next">Next</string>

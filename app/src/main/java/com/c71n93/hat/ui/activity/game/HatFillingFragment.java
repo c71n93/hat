@@ -1,4 +1,4 @@
-package com.c71n93.hat.ui.game;
+package com.c71n93.hat.ui.activity.game;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,7 +11,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import com.c71n93.hat.R;
-import com.c71n93.hat.model.GameViewModel;
+import com.c71n93.hat.model.GameState;
+import com.c71n93.hat.model.Hat;
+import com.c71n93.hat.model.TeamsQueue;
+import com.c71n93.hat.model.view.GameSettingsViewModel;
+import com.c71n93.hat.model.view.GameStateViewModel;
 import com.c71n93.hat.model.Words;
 import com.c71n93.hat.model.Word;
 import com.c71n93.hat.ui.input.EditStringInput;
@@ -32,18 +36,23 @@ public class HatFillingFragment extends Fragment {
         final EditStringInput wordInput = new EditStringInput(view.findViewById(R.id.input_word));
         final View addWordButton = view.findViewById(R.id.button_add_word);
         final TextView wordsLeft = view.findViewById(R.id.text_words_left);
-        GameViewModel.self(requireActivity()).game().observe(
+        GameSettingsViewModel.self(requireActivity()).settings().observe(
             getViewLifecycleOwner(),
-            game -> {
-                final Words words = new Words(game.wordsTotal());
+            settings -> {
+                final Words words = new Words(settings.wordsTotal());
                 wordsLeft.setText(getString(R.string.label_words_left, words.untilFull()));
                 addWordButton.setOnClickListener(
                     button -> wordInput.ifValidOrMarkError(
                         word -> {
                             words.with(new Word(word)).ifFullOrElse(
-                                () -> Navigation.findNavController(button).navigate(
-                                    R.id.action_hatFillingFragment_to_gameStartFragment
-                                ),
+                                () -> {
+                                    GameStateViewModel.self(requireActivity()).updateState(
+                                        new GameState(words, new Hat(words), new TeamsQueue(settings.teams()))
+                                    );
+                                    Navigation.findNavController(button).navigate(
+                                        R.id.action_hatFillingFragment_to_gameStartFragment
+                                    );
+                                },
                                 () -> wordsLeft.setText(getString(R.string.label_words_left, words.untilFull()))
                             );
                             wordInput.clear();

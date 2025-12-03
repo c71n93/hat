@@ -1,4 +1,4 @@
-package com.c71n93.hat.ui.game;
+package com.c71n93.hat.ui.activity.game;
 
 import android.view.LayoutInflater;
 import android.view.View;

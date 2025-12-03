@@ -1,4 +1,4 @@
-package com.c71n93.hat.ui.game;
+package com.c71n93.hat.ui.activity.game;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,8 +11,8 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.c71n93.hat.R;
-import com.c71n93.hat.model.Game;
-import com.c71n93.hat.model.GameViewModel;
+import com.c71n93.hat.model.GameSettings;
+import com.c71n93.hat.model.view.GameSettingsViewModel;
 import com.c71n93.hat.model.Team;
 import com.c71n93.hat.ui.input.EditIntInput;
 import com.c71n93.hat.ui.input.EditStringInput;
@@ -61,8 +61,8 @@ public class GameSettingsFragment extends Fragment {
                 // TODO: it definitely may be implemented more elegant using something like
                 // "InputCombination"
                 if (teams.isPresent() && words.isPresent()) {
-                    GameViewModel.self(requireActivity())
-                        .updateGame(new Game(teams.get(), words.get()));
+                    GameSettingsViewModel.self(requireActivity())
+                        .updateSettings(new GameSettings(teams.get(), words.get()));
                     Navigation.findNavController(button)
                         .navigate(R.id.action_gameSettingsFragment_to_hatFillingFragment);
                 }

@@ -1,11 +1,11 @@
-package com.c71n93.hat.ui;
+package com.c71n93.hat.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import com.c71n93.hat.R;
-import com.c71n93.hat.ui.game.GameActivity;
+import com.c71n93.hat.ui.activity.game.GameActivity;
 
 public class MainActivity extends AppCompatActivity {
 
