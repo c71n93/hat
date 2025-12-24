@@ -25,6 +25,19 @@
     <fragment
         android:id="@+id/gameStartFragment"
         android:name="com.c71n93.hat.ui.activity.game.GameStartFragment"
-        android:label="@string/game_start_title" />
+        android:label="@string/game_start_title">
+        <action
+            android:id="@+id/action_gameStartFragment_to_gameRoundFragment"
+            app:destination="@id/gameRoundFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/gameRoundFragment"
+        android:name="com.c71n93.hat.ui.activity.game.GameRoundFragment"
+        android:label="@string/game_round_title">
+        <action
+            android:id="@+id/action_gameRoundFragment_to_gameStartFragment"
+            app:destination="@id/gameStartFragment" />
+    </fragment>
 
 </navigation>

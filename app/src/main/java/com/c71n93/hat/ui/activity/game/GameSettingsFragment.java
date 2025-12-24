@@ -38,7 +38,7 @@ public class GameSettingsFragment extends Fragment {
     public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         final MultipleTeamInputViews teamInputViews = new MultipleTeamInputViews(
-                view.findViewById(R.id.container_team_inputs)
+            view.findViewById(R.id.container_team_inputs)
         ).addInput().addInput();
         final EditIntInput totalWordsInput = new EditIntInput(view.findViewById(R.id.input_total_words));
         view.findViewById(R.id.button_add_team).setOnClickListener(
