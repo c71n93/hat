@@ -3,20 +3,19 @@
     <string name="app_name">hat</string>
     <string name="game_settings_title">Game Settings</string>
     <string name="hat_filling_title">Hat Filling</string>
+    <string name="game_start_title">Game Start</string>
     <string name="label_team_name">Name for team %1$d</string>
     <string name="hint_team_name">Enter the name for your team</string>
     <string name="label_total_words">Total words for the game</string>
     <string name="hint_total_words">Enter total number of words in the hat</string>
-<!--    <string name="summary_teams">%1$s vs %2$s</string>-->
-<!--    <string name="summary_words_total">Total words: %1$d</string>-->
     <string name="label_word">Your word</string>
     <string name="hint_word">Enter new word</string>
     <string name="label_words_left">Words left: %1$d</string>
     <string name="game_start_words_ready">Words ready: %1$d</string>
+    <string name="label_team_queue_item">%1$s: %2$d</string>
     <!--    Buttons    -->
     <string name="button_new_game">New Game</string>
     <string name="button_next">Next</string>
     <string name="button_add_team">Add team</string>
     <string name="button_add_word">Add word</string>
-    <string name="game_start_title">Game Start</string>
 </resources>

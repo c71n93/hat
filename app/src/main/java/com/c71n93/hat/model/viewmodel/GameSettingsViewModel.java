@@ -1,4 +1,4 @@
-package com.c71n93.hat.model.view;
+package com.c71n93.hat.model.viewmodel;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

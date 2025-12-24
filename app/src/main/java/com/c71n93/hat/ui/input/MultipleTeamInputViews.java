@@ -1,31 +1,33 @@
-package com.c71n93.hat.ui.activity.game;
+package com.c71n93.hat.ui.input;
 
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.c71n93.hat.R;
-import com.c71n93.hat.ui.input.EditStringInput;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Manages creation and storage of team name input views inside a container.
- *
- * TODO: This class is not configurable and therefore cannot be reused. Figure
- * out how dynamic management of multiple inputs can be generalized. TODO: Try
- * to use RecyclerView to handle multiple inputs. TODO: Add possibility to
- * remove team inputs.
  */
+// TODO: This class is not configurable and therefore cannot be reused. Figure
+// out how dynamic management of multiple inputs can be generalized.
+// TODO: Try to use RecyclerView to handle multiple inputs.
+// TODO: Add possibility to remove team inputs.
 public class MultipleTeamInputViews {
     private final LayoutInflater layoutInflater;
-    private final LinearLayout teamsContainer;
+    private final ViewGroup teamsContainer;
     private final List<EditStringInput> inputs = new ArrayList<>();
 
-    public MultipleTeamInputViews(final LayoutInflater layoutInflater, final LinearLayout teamsContainer) {
+    public MultipleTeamInputViews(final ViewGroup teamsContainer) {
+        this(LayoutInflater.from(teamsContainer.getContext()), teamsContainer);
+    }
+
+    public MultipleTeamInputViews(final LayoutInflater layoutInflater, final ViewGroup teamsContainer) {
         this.layoutInflater = layoutInflater;
         this.teamsContainer = teamsContainer;
     }

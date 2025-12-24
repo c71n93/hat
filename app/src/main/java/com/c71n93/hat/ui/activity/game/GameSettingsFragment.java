@@ -12,10 +12,11 @@ import androidx.navigation.Navigation;
 
 import com.c71n93.hat.R;
 import com.c71n93.hat.model.GameSettings;
-import com.c71n93.hat.model.view.GameSettingsViewModel;
+import com.c71n93.hat.model.viewmodel.GameSettingsViewModel;
 import com.c71n93.hat.model.Team;
 import com.c71n93.hat.ui.input.EditIntInput;
 import com.c71n93.hat.ui.input.EditStringInput;
+import com.c71n93.hat.ui.input.MultipleTeamInputViews;
 import com.c71n93.hat.ui.input.validation.DefaultInputsValidation;
 import com.c71n93.hat.ui.input.validation.DifferentInputsValidation;
 
@@ -24,15 +25,12 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class GameSettingsFragment extends Fragment {
-    private LayoutInflater layoutInflater;
-
     @Nullable
     @Override
     public View onCreateView(
         @NonNull final LayoutInflater inflater,
         @Nullable final ViewGroup container,
         @Nullable final Bundle savedInstanceState) {
-        this.layoutInflater = inflater;
         return inflater.inflate(R.layout.fragment_game_settings, container, false);
     }
 
@@ -40,7 +38,7 @@ public class GameSettingsFragment extends Fragment {
     public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         final MultipleTeamInputViews teamInputViews = new MultipleTeamInputViews(
-            this.layoutInflater, view.findViewById(R.id.container_team_inputs)
+                view.findViewById(R.id.container_team_inputs)
         ).addInput().addInput();
         final EditIntInput totalWordsInput = new EditIntInput(view.findViewById(R.id.input_total_words));
         view.findViewById(R.id.button_add_team).setOnClickListener(

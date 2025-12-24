@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.c71n93.hat.R;
-import com.c71n93.hat.model.view.GameStateViewModel;
+import com.c71n93.hat.model.viewmodel.GameStateViewModel;
 
 public class GameStartFragment extends Fragment {
     @Nullable
@@ -28,7 +28,10 @@ public class GameStartFragment extends Fragment {
         final TextView wordsReady = view.findViewById(R.id.label_words_ready);
         GameStateViewModel.self(requireActivity()).state().observe(
             getViewLifecycleOwner(),
-            state -> wordsReady.setText(getString(R.string.game_start_words_ready, state.words().total()))
+            state -> {
+                state.teamsQueue().draw(view.findViewById(R.id.container_teams_queue));
+                wordsReady.setText(getString(R.string.game_start_words_ready, state.words().total()));
+            }
         );
     }
 }

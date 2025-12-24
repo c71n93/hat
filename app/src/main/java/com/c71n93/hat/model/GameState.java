@@ -15,4 +15,8 @@ public class GameState {
     public Words words() {
         return this.words;
     }
+
+    public TeamsQueue teamsQueue() {
+        return this.teamsQueue;
+    }
 }
