@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/text_round_countdown"
+        android:id="@+id/text_turn_countdown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -27,10 +27,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button_end_round"
+        android:id="@+id/button_end_turn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_end_round"
+        android:text="@string/button_end_turn"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

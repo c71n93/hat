@@ -13,21 +13,21 @@ import com.c71n93.hat.R;
 import com.c71n93.hat.model.viewmodel.GameStateViewModel;
 import com.c71n93.hat.ui.elements.VisualizedCountdownSeconds;
 
-public class GameRoundFragment extends Fragment {
+public class GameTurnFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(
         @NonNull final LayoutInflater inflater,
         @Nullable final ViewGroup container,
         @Nullable final Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_game_round, container, false);
+        return inflater.inflate(R.layout.fragment_game_turn, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         final Button startButton = view.findViewById(R.id.button_start);
-        final Button endButton = view.findViewById(R.id.button_end_round);
+        final Button endButton = view.findViewById(R.id.button_end_turn);
         startButton.setOnClickListener(
             button -> {
                 startButton.setEnabled(false);
@@ -36,15 +36,15 @@ public class GameRoundFragment extends Fragment {
                     getViewLifecycleOwner(),
                     state -> state.teamsQueue().next()
                 );
-                // TODO: add possibility to configure round duration.
+                // TODO: add possibility to configure turn duration.
                 new VisualizedCountdownSeconds(
-                    view.findViewById(R.id.text_round_countdown), 5, () -> endButton.setVisibility(View.VISIBLE)
+                    view.findViewById(R.id.text_turn_countdown), 5, () -> endButton.setVisibility(View.VISIBLE)
                 ).start();
             }
         );
         endButton.setOnClickListener(
             button -> Navigation.findNavController(button)
-                .navigate(R.id.action_gameRoundFragment_to_gameStartFragment)
+                .navigate(R.id.action_gameTurnFragment_to_gameStartFragment)
         );
     }
 }

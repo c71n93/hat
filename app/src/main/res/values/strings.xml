@@ -4,7 +4,7 @@
     <string name="game_settings_title">Game Settings</string>
     <string name="hat_filling_title">Hat Filling</string>
     <string name="game_start_title">Game Start</string>
-    <string name="game_round_title">Game Round</string>
+    <string name="game_turn_title">Game Turn</string>
     <string name="label_team_name">Name for team %1$d</string>
     <string name="hint_team_name">Enter the name for your team</string>
     <string name="label_total_words">Total words for the game</string>
@@ -21,7 +21,7 @@
     <string name="button_next">Next</string>
     <string name="button_add_team">Add team</string>
     <string name="button_add_word">Add word</string>
-    <string name="button_start_round">Start Round</string>
+    <string name="button_start_turn">Start Turn</string>
     <string name="button_start">Start</string>
-    <string name="button_end_round">End Round</string>
+    <string name="button_end_turn">End Turn</string>
 </resources>
