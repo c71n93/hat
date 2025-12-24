@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import com.c71n93.hat.R;
+import com.c71n93.hat.model.viewmodel.GameStateViewModel;
 import com.c71n93.hat.ui.elements.VisualizedCountdownSeconds;
 
 public class GameRoundFragment extends Fragment {
@@ -31,6 +32,10 @@ public class GameRoundFragment extends Fragment {
             button -> {
                 startButton.setEnabled(false);
                 startButton.setVisibility(View.GONE);
+                GameStateViewModel.self(requireActivity()).state().observe(
+                    getViewLifecycleOwner(),
+                    state -> state.teamsQueue().next()
+                );
                 // TODO: add possibility to configure round duration.
                 new VisualizedCountdownSeconds(
                     view.findViewById(R.id.text_round_countdown), 5, () -> endButton.setVisibility(View.VISIBLE)

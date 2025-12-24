@@ -4,6 +4,7 @@ import android.view.ViewGroup;
 import java.util.ArrayDeque;
 import java.util.Collection;
 import java.util.Deque;
+import java.util.Iterator;
 
 /**
  * The queue of teams.
@@ -36,8 +37,13 @@ public class TeamsQueue implements Drawable {
         // TODO: implement decorator for ViewGroup called EmptyContainer, that will
         // guarantee emptiness.
         container.removeAllViews();
-        for (final Team team : this.teams) {
-            team.draw(container);
+        final Iterator<Team> iterator = this.teams.iterator();
+        if (!iterator.hasNext()) {
+            throw new IllegalStateException("Teams queue should not be empty.");
+        }
+        new HighlightedTeam(iterator.next()).draw(container);
+        while (iterator.hasNext()) {
+            iterator.next().draw(container);
         }
     }
 }

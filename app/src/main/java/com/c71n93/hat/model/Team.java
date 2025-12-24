@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.c71n93.hat.R;
 
-public class Team implements Drawable {
+public class Team implements DrawableWithViewTemplate<TextView> {
     final String name;
     final int score = 0;
 
@@ -28,7 +28,12 @@ public class Team implements Drawable {
             false
         );
         final TextView teamView = item.findViewById(R.id.label_team_queue_item);
-        teamView.setText(container.getContext().getString(R.string.label_team_queue_item, this.name, this.score));
-        container.addView(teamView);
+        this.draw(container, teamView);
+    }
+
+    @Override
+    public void draw(final ViewGroup container, final TextView viewTemplate) {
+        viewTemplate.setText(container.getContext().getString(R.string.label_team_queue_item, this.name, this.score));
+        container.addView(viewTemplate);
     }
 }
