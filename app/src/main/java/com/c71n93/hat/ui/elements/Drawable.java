@@ -1,8 +1,6 @@
-package com.c71n93.hat.model;
+package com.c71n93.hat.ui.elements;
 
-import android.view.View;
 import android.view.ViewGroup;
-import androidx.annotation.LayoutRes;
 
 public interface Drawable {
     /**

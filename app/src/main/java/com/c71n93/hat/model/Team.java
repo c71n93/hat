@@ -4,8 +4,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.c71n93.hat.R;
+import com.c71n93.hat.ui.elements.DrawableWithViewTemplate;
 
 public class Team implements DrawableWithViewTemplate<TextView> {
     final String name;

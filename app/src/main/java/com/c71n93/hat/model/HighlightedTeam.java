@@ -4,8 +4,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.c71n93.hat.R;
+import com.c71n93.hat.ui.elements.DrawableWithViewTemplate;
 
 /**
  * Decorator that draws a team using a highlighted queue item template.
