@@ -5,12 +5,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.c71n93.hat.R;
-import com.c71n93.hat.ui.elements.DrawableWithViewTemplate;
+import com.c71n93.hat.ui.elements.DrawableToContainerWithViewTemplate;
 
 /**
  * Decorator that draws a team using a highlighted queue item template.
  */
-public class HighlightedTeam implements DrawableWithViewTemplate<TextView> {
+public class HighlightedTeam implements DrawableToContainerWithViewTemplate<TextView> {
     final Team origin;
 
     public HighlightedTeam(final Team origin) {

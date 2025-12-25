@@ -1,13 +1,8 @@
 package com.c71n93.hat.ui.elements;
 
-import android.view.ViewGroup;
-
 public interface Drawable {
     /**
-     * Draws itself into the specified container.
-     *
-     * @param container
-     *            The container into which the object is drawn.
+     * Draws itself.
      */
-    void draw(final ViewGroup container);
+    void draw();
 }

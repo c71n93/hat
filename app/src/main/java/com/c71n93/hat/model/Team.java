@@ -5,14 +5,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.c71n93.hat.R;
-import com.c71n93.hat.ui.elements.DrawableWithViewTemplate;
+import com.c71n93.hat.ui.elements.DrawableToContainerWithViewTemplate;
 
-public class Team implements DrawableWithViewTemplate<TextView> {
+public class Team implements DrawableToContainerWithViewTemplate<TextView> {
     final String name;
-    final int score = 0;
+    private int score;
 
     public Team(final String name) {
         this.name = name;
+        this.score = 0;
     }
 
     @Override
@@ -35,5 +36,9 @@ public class Team implements DrawableWithViewTemplate<TextView> {
     public void draw(final ViewGroup container, final TextView viewTemplate) {
         viewTemplate.setText(container.getContext().getString(R.string.label_team_queue_item, this.name, this.score));
         container.addView(viewTemplate);
+    }
+
+    public void addPoints(final int points) {
+        this.score = this.score + points;
     }
 }

@@ -13,6 +13,7 @@
     <string name="hint_word">Enter new word</string>
     <string name="label_words_left">Words left: %1$d</string>
     <string name="label_time_left">Time left: %1$d</string>
+    <string name="label_turn_score">Turn score: %1$d</string>
     <string name="label_time_is_up">Time’s up!</string>
     <string name="game_start_words_ready">Words ready: %1$d</string>
     <string name="label_team_queue_item">%1$s: %2$d</string>
@@ -23,5 +24,6 @@
     <string name="button_add_word">Add word</string>
     <string name="button_start_turn">Start Turn</string>
     <string name="button_start">Start</string>
+    <string name="button_accept">Accept</string>
     <string name="button_end_turn">End Turn</string>
 </resources>

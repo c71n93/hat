@@ -1,7 +1,7 @@
 package com.c71n93.hat.model;
 
 import android.view.ViewGroup;
-import com.c71n93.hat.ui.elements.Drawable;
+import com.c71n93.hat.ui.elements.DrawableToContainer;
 import java.util.ArrayDeque;
 import java.util.Collection;
 import java.util.Deque;
@@ -10,7 +10,7 @@ import java.util.Iterator;
 /**
  * The queue of teams.
  */
-public class TeamsQueue implements Drawable {
+public class TeamsQueue implements DrawableToContainer {
     private final Deque<Team> teams;
 
     public TeamsQueue() {

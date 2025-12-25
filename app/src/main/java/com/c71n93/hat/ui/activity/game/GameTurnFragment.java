@@ -4,16 +4,20 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import com.c71n93.hat.R;
+import com.c71n93.hat.model.Team;
 import com.c71n93.hat.model.viewmodel.GameStateViewModel;
+import com.c71n93.hat.ui.elements.TurnScore;
 import com.c71n93.hat.ui.elements.VisualizedCountdownSeconds;
+import java.util.Objects;
 
 public class GameTurnFragment extends Fragment {
+    private TurnUiState state = TurnUiState.ready();
+
     @Nullable
     @Override
     public View onCreateView(
@@ -26,25 +30,47 @@ public class GameTurnFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        final Button startButton = view.findViewById(R.id.button_start);
-        final Button endButton = view.findViewById(R.id.button_end_turn);
-        startButton.setOnClickListener(
+        final StatelessTurnViews views = new StatelessTurnViews(view);
+        this.state = renderNewState(TurnUiState.ready(), views);
+        final TurnScore score = new TurnScore();
+        views.startButton.setOnClickListener(
             button -> {
-                startButton.setEnabled(false);
-                startButton.setVisibility(View.GONE);
-                GameStateViewModel.self(requireActivity()).state().observe(
-                    getViewLifecycleOwner(),
-                    state -> state.teamsQueue().next()
-                );
-                // TODO: add possibility to configure turn duration.
+                this.state = renderNewState(TurnUiState.running(), views);
+                score.draw(views.turnScore);
                 new VisualizedCountdownSeconds(
-                    view.findViewById(R.id.text_turn_countdown), 5, () -> endButton.setVisibility(View.VISIBLE)
+                    views.countdownView,
+                    5,
+                    () -> this.state.ifRunningOrThrow(
+                        running -> this.state = renderNewState(TurnUiState.finished(), views)
+                    )
                 ).start();
             }
         );
-        endButton.setOnClickListener(
-            button -> Navigation.findNavController(button)
-                .navigate(R.id.action_gameTurnFragment_to_gameStartFragment)
+        views.acceptButton.setOnClickListener(
+            button -> this.state.ifRunningOrThrow(
+                running -> score.incrementAndDraw(views.turnScore)
+            )
         );
+        views.endButton.setOnClickListener(
+            button -> {
+                this.state.ifFinishedOrThrow(
+                    finished -> this.currentTeam().addPoints(score.score())
+                );
+                Navigation.findNavController(button)
+                    .navigate(R.id.action_gameTurnFragment_to_gameStartFragment);
+            }
+        );
+    }
+
+    private Team currentTeam() {
+        return Objects.requireNonNull(
+            GameStateViewModel.self(requireActivity()).state().getValue(),
+            "Game state is not ready."
+        ).teamsQueue().next();
+    }
+
+    private static TurnUiState renderNewState(final TurnUiState next, final StatelessTurnViews views) {
+        next.render(views);
+        return next;
     }
 }
