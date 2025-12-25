@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import com.c71n93.hat.R;
+import com.c71n93.hat.model.Hat;
 import com.c71n93.hat.model.Team;
 import com.c71n93.hat.model.viewmodel.GameStateViewModel;
 import com.c71n93.hat.ui.elements.TurnScore;
@@ -34,22 +35,7 @@ public class GameTurnFragment extends Fragment {
         this.state = renderNewState(TurnUiState.ready(), views);
         final TurnScore score = new TurnScore();
         views.startButton.setOnClickListener(
-            button -> {
-                this.state = renderNewState(TurnUiState.running(), views);
-                score.draw(views.turnScore);
-                new VisualizedCountdownSeconds(
-                    views.countdownView,
-                    5,
-                    () -> this.state.ifRunningOrThrow(
-                        running -> this.state = renderNewState(TurnUiState.finished(), views)
-                    )
-                ).start();
-            }
-        );
-        views.acceptButton.setOnClickListener(
-            button -> this.state.ifRunningOrThrow(
-                running -> score.incrementAndDraw(views.turnScore)
-            )
+            button -> this.onStartClicked(views, score)
         );
         views.endButton.setOnClickListener(
             button -> {
@@ -67,6 +53,55 @@ public class GameTurnFragment extends Fragment {
             GameStateViewModel.self(requireActivity()).state().getValue(),
             "Game state is not ready."
         ).teamsQueue().next();
+    }
+
+    private Hat currentHat() {
+        return Objects.requireNonNull(
+            GameStateViewModel.self(requireActivity()).state().getValue(),
+            "Game state is not ready."
+        ).hat();
+    }
+
+    // TODO: Fragile spaghetti-code with lots of temporal coupling. Should be
+    // refactored.
+    private void onStartClicked(final StatelessTurnViews views, final TurnScore score) {
+        this.state = renderNewState(TurnUiState.running(), views);
+        score.draw(views.turnScore);
+        final Hat hat = this.currentHat();
+        if (!this.renderNextWord(hat, views)) {
+            this.state = renderNewState(TurnUiState.finished(), views);
+            return;
+        }
+        final VisualizedCountdownSeconds countdown = new VisualizedCountdownSeconds(
+            views.countdownView,
+            5,
+            () -> this.state.ifRunningOrThrow(
+                // TODO: Handle situation with last pulled word when timer is up (accept / put
+                // back)
+                running -> this.state = renderNewState(TurnUiState.finished(), views)
+            )
+        );
+        countdown.start();
+        views.acceptButton.setOnClickListener(
+            accept -> this.state.ifRunningOrThrow(
+                running -> {
+                    score.incrementAndDraw(views.turnScore);
+                    if (!this.renderNextWord(hat, views)) {
+                        countdown.stop();
+                        this.state = renderNewState(TurnUiState.finished(), views);
+                    }
+                }
+            )
+        );
+    }
+
+    private boolean renderNextWord(final Hat hat, final StatelessTurnViews views) {
+        return hat.pull().map(
+            word -> {
+                word.draw(views.word);
+                return true;
+            }
+        ).orElse(false);
     }
 
     private static TurnUiState renderNewState(final TurnUiState next, final StatelessTurnViews views) {

@@ -14,20 +14,20 @@ public final class TurnScore implements DrawableToView<TextView> {
     }
 
     public int score() {
-        return score;
+        return this.score;
     }
 
     public void increment() {
-        score++;
+        this.score++;
     }
 
-    public void incrementAndDraw(TextView view) {
+    public void incrementAndDraw(final TextView view) {
         this.increment();
         this.draw(view);
     }
 
     @Override
-    public void draw(TextView view) {
+    public void draw(final TextView view) {
         view.setText(view.getContext().getString(R.string.label_turn_score, this.score));
     }
 }

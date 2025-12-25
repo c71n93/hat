@@ -38,6 +38,7 @@ public sealed interface TurnUiState permits TurnUiState.Ready, TurnUiState.Runni
             views.endButton.setEnabled(false);
             views.countdownView.setVisibility(View.GONE);
             views.turnScore.setVisibility(View.GONE);
+            views.word.setVisibility(View.GONE);
         }
     }
 
@@ -56,6 +57,7 @@ public sealed interface TurnUiState permits TurnUiState.Ready, TurnUiState.Runni
             views.endButton.setEnabled(false);
             views.countdownView.setVisibility(View.VISIBLE);
             views.turnScore.setVisibility(View.VISIBLE);
+            views.word.setVisibility(View.VISIBLE);
         }
     }
 
@@ -74,6 +76,7 @@ public sealed interface TurnUiState permits TurnUiState.Ready, TurnUiState.Runni
             views.endButton.setEnabled(true);
             views.countdownView.setVisibility(View.VISIBLE);
             views.turnScore.setVisibility(View.VISIBLE);
+            views.word.setVisibility(View.GONE);
         }
     }
 }

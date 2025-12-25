@@ -2,9 +2,7 @@ package com.c71n93.hat.model;
 
 public class GameState {
     private final Words words;
-    @SuppressWarnings("PMD.UnusedPrivateField")
     private final Hat hat;
-    @SuppressWarnings("PMD.UnusedPrivateField")
     private final TeamsQueue teamsQueue;
 
     public GameState(final Words words, final Hat hat, final TeamsQueue teamsQueue) {
@@ -14,6 +12,10 @@ public class GameState {
     }
     public Words words() {
         return this.words;
+    }
+
+    public Hat hat() {
+        return this.hat;
     }
 
     public TeamsQueue teamsQueue() {

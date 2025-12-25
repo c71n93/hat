@@ -37,6 +37,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_turn_countdown" />
 
+    <TextView
+        android:id="@+id/text_next_word"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_turn_score" />
+
     <Button
         android:id="@+id/button_accept"
         android:layout_width="wrap_content"
@@ -46,7 +57,7 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_turn_score" />
+        app:layout_constraintTop_toBottomOf="@id/text_next_word" />
 
     <Button
         android:id="@+id/button_end_turn"

@@ -26,13 +26,13 @@ public class GameStartFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        final TextView wordsReady = view.findViewById(R.id.label_words_ready);
+        final TextView wordsLeft = view.findViewById(R.id.label_words_ready);
         final View startTurnButton = view.findViewById(R.id.button_start_turn);
         GameStateViewModel.self(requireActivity()).state().observe(
             getViewLifecycleOwner(),
             state -> {
                 state.teamsQueue().draw(view.findViewById(R.id.container_teams_queue));
-                wordsReady.setText(getString(R.string.game_start_words_ready, state.words().total()));
+                wordsLeft.setText(getString(R.string.game_start_words_in_hat, state.hat().wordsLeft()));
             }
         );
         startTurnButton.setOnClickListener(

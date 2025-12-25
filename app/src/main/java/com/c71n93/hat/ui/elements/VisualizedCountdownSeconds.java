@@ -10,6 +10,7 @@ public class VisualizedCountdownSeconds {
     private final TextView view;
     private final int durationSec;
     private final Runnable onFinish;
+    private final CountDownTimer timer;
     private static final int MILLISEC_IN_SEC = 1000;
 
     /**
@@ -26,27 +27,35 @@ public class VisualizedCountdownSeconds {
         this.view = view;
         this.durationSec = duration;
         this.onFinish = onFinishAction;
+        this.timer = new CountDownTimer(
+            VisualizedCountdownSeconds.secToMillisec(this.durationSec), VisualizedCountdownSeconds.MILLISEC_IN_SEC
+        ) {
+            @Override
+            public void onTick(final long millisUntilFinished) {
+                VisualizedCountdownSeconds.this.view.setText(
+                    VisualizedCountdownSeconds.this.view.getContext()
+                        .getString(R.string.label_time_left, millisUntilFinished / 1000L)
+                );
+            }
+            @Override
+            public void onFinish() {
+                VisualizedCountdownSeconds.this.view.setText(
+                    VisualizedCountdownSeconds.this.view.getContext().getString(R.string.label_time_is_up)
+                );
+                VisualizedCountdownSeconds.this.onFinish.run();
+            }
+        };
     }
 
     public void start() {
         final Context context = this.view.getContext();
         this.view.setText(context.getString(R.string.label_time_left, this.durationSec));
         this.view.setVisibility(View.VISIBLE);
-        new CountDownTimer(
-            VisualizedCountdownSeconds.secToMillisec(this.durationSec), VisualizedCountdownSeconds.MILLISEC_IN_SEC
-        ) {
-            @Override
-            public void onTick(final long millisUntilFinished) {
-                VisualizedCountdownSeconds.this.view.setText(
-                    context.getString(R.string.label_time_left, millisUntilFinished / 1000L)
-                );
-            }
-            @Override
-            public void onFinish() {
-                VisualizedCountdownSeconds.this.view.setText(context.getString(R.string.label_time_is_up));
-                VisualizedCountdownSeconds.this.onFinish.run();
-            }
-        }.start();
+        this.timer.start();
+    }
+
+    public void stop() {
+        this.timer.cancel();
     }
 
     private static int secToMillisec(final int sec) {
