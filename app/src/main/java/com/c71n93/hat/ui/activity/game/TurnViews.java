@@ -5,7 +5,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import com.c71n93.hat.R;
 
-final class StatelessTurnViews {
+final class TurnViews {
     final Button startBtn;
     final Button acceptBtn;
     final Button acceptLastBtn;
@@ -15,7 +15,7 @@ final class StatelessTurnViews {
     final TextView scoreTxt;
     final TextView wordTxt;
 
-    StatelessTurnViews(final View root) {
+    TurnViews(final View root) {
         this.startBtn = root.findViewById(R.id.button_start);
         this.acceptBtn = root.findViewById(R.id.button_accept);
         this.acceptLastBtn = root.findViewById(R.id.button_accept_last);

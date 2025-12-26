@@ -32,7 +32,7 @@ public class GameTurnFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        final StatelessTurnViews views = new StatelessTurnViews(view);
+        final TurnViews views = new TurnViews(view);
         this.state = renderNewState(TurnUiState.ready(), views);
         final TurnScore score = new TurnScore();
         views.startBtn.setOnClickListener(
@@ -63,7 +63,7 @@ public class GameTurnFragment extends Fragment {
         ).hat();
     }
 
-    private void onStartClicked(final StatelessTurnViews views, final TurnScore score) {
+    private void onStartClicked(final TurnViews views, final TurnScore score) {
         this.state = renderNewState(TurnUiState.running(), views);
         score.draw(views.scoreTxt);
         final RememberingHat hat = new RememberingHat(this.currentHat());
@@ -75,7 +75,7 @@ public class GameTurnFragment extends Fragment {
             views.countdownTxt,
             5, // TODO: make turn time configurable
             () -> this.state.ifRunningOrThrow(
-                    // TODO: add timer for TurnUiState.LastWord state
+                // TODO: add timer for TurnUiState.LastWord state
                 running -> this.state = renderNewState(TurnUiState.lastWord(), views)
             )
         );
@@ -109,7 +109,7 @@ public class GameTurnFragment extends Fragment {
         );
     }
 
-    private boolean renderNextWord(final RememberingHat hat, final StatelessTurnViews views) {
+    private boolean renderNextWord(final RememberingHat hat, final TurnViews views) {
         return hat.pull().map(
             word -> {
                 word.draw(views.wordTxt);
@@ -118,7 +118,7 @@ public class GameTurnFragment extends Fragment {
         ).orElse(false);
     }
 
-    private static TurnUiState renderNewState(final TurnUiState next, final StatelessTurnViews views) {
+    private static TurnUiState renderNewState(final TurnUiState next, final TurnViews views) {
         next.render(views);
         return next;
     }

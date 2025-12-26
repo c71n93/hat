@@ -4,9 +4,10 @@ import android.view.View;
 
 import java.util.function.Consumer;
 
-public sealed interface TurnUiState
+// TODO: Refactor logic of states to generalize it across different Fragments somehow.
+sealed interface TurnUiState
     permits TurnUiState.Ready, TurnUiState.Running, TurnUiState.LastWord, TurnUiState.Finished {
-    void render(StatelessTurnViews views);
+    void render(TurnViews views);
 
     // TODO: Fix copy-paste for these methods.
     // TODO: Since TurnUiState is stateless (wtf) this methods can accept Runnable
@@ -36,7 +37,7 @@ public sealed interface TurnUiState
 
     record Ready() implements TurnUiState {
         @Override
-        public void render(final StatelessTurnViews views) {
+        public void render(final TurnViews views) {
             views.startBtn.setVisibility(View.VISIBLE);
             views.startBtn.setEnabled(true);
             views.acceptBtn.setVisibility(View.GONE);
@@ -59,7 +60,7 @@ public sealed interface TurnUiState
             action.accept(this);
         }
         @Override
-        public void render(final StatelessTurnViews views) {
+        public void render(final TurnViews views) {
             views.startBtn.setVisibility(View.GONE);
             views.startBtn.setEnabled(false);
             views.acceptBtn.setVisibility(View.VISIBLE);
@@ -82,7 +83,7 @@ public sealed interface TurnUiState
             action.accept(this);
         }
         @Override
-        public void render(final StatelessTurnViews views) {
+        public void render(final TurnViews views) {
             views.startBtn.setVisibility(View.GONE);
             views.startBtn.setEnabled(false);
             views.acceptBtn.setVisibility(View.GONE);
@@ -105,7 +106,7 @@ public sealed interface TurnUiState
             action.accept(this);
         }
         @Override
-        public void render(final StatelessTurnViews views) {
+        public void render(final TurnViews views) {
             views.startBtn.setVisibility(View.GONE);
             views.startBtn.setEnabled(false);
             views.acceptBtn.setVisibility(View.GONE);

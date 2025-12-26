@@ -10,14 +10,13 @@ public class GameState {
         this.hat = hat;
         this.teamsQueue = teamsQueue;
     }
+
     public Words words() {
         return this.words;
     }
-
     public Hat hat() {
         return this.hat;
     }
-
     public TeamsQueue teamsQueue() {
         return this.teamsQueue;
     }

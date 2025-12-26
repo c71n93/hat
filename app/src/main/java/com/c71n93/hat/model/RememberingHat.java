@@ -3,8 +3,8 @@ package com.c71n93.hat.model;
 import java.util.Optional;
 
 /**
- * {@link Hat} wrapper that remembers the last pulled word and can put it back if
- * needed.
+ * {@link Hat} wrapper that remembers the last pulled word and can put it back
+ * if needed.
  */
 public class RememberingHat {
     private final Hat origin;

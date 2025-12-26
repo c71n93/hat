@@ -8,7 +8,8 @@ import com.c71n93.hat.R;
 import com.c71n93.hat.ui.elements.DrawableToContainerWithViewTemplate;
 
 /**
- * Wrapper for {@link Team} that draws a team using a highlighted queue item template.
+ * Wrapper for {@link Team} that draws a team using a highlighted queue item
+ * template.
  */
 public class HighlightedTeam implements DrawableToContainerWithViewTemplate<TextView> {
     final Team origin;

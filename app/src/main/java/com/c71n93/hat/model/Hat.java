@@ -46,6 +46,10 @@ public class Hat {
         return this.bag.size();
     }
 
+    public boolean empty() {
+        return this.wordsLeft() == 0;
+    }
+
     private Word pull(final int i) {
         final Word pulled = this.bag.get(i);
         final Word last = this.bag.get(this.bag.size() - 1);
