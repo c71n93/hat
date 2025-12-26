@@ -27,7 +27,7 @@ public final class HatTest {
             new Word("beta"),
             new Word("gamma")
         );
-        words.forEach(hat::add);
+        words.forEach(hat::put);
         final List<String> pulled = new ArrayList<>();
         for (final Word ignored : words) {
             pulled.add(hat.pull().orElseThrow().value());

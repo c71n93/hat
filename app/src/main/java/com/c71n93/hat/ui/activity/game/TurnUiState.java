@@ -4,7 +4,8 @@ import android.view.View;
 
 import java.util.function.Consumer;
 
-public sealed interface TurnUiState permits TurnUiState.Ready, TurnUiState.Running, TurnUiState.Finished {
+public sealed interface TurnUiState
+    permits TurnUiState.Ready, TurnUiState.Running, TurnUiState.LastWord, TurnUiState.Finished {
     void render(StatelessTurnViews views);
 
     // TODO: Fix copy-paste for these methods.
@@ -12,6 +13,9 @@ public sealed interface TurnUiState permits TurnUiState.Ready, TurnUiState.Runni
     // instead of Consumer. But maybe someday TurnUiState will be stateful.
     default void ifRunningOrThrow(final Consumer<? super Running> action) {
         throw new IllegalStateException("Invalid state. Should be 'Running'");
+    }
+    default void ifLastWordOrThrow(final Consumer<? super LastWord> action) {
+        throw new IllegalStateException("Invalid state. Should be 'LastWord'");
     }
     default void ifFinishedOrThrow(final Consumer<? super Finished> action) {
         throw new IllegalStateException("Invalid state. Should be 'Finished'");
@@ -23,6 +27,9 @@ public sealed interface TurnUiState permits TurnUiState.Ready, TurnUiState.Runni
     static TurnUiState running() {
         return new Running();
     }
+    static TurnUiState lastWord() {
+        return new LastWord();
+    }
     static TurnUiState finished() {
         return new Finished();
     }
@@ -30,15 +37,19 @@ public sealed interface TurnUiState permits TurnUiState.Ready, TurnUiState.Runni
     record Ready() implements TurnUiState {
         @Override
         public void render(final StatelessTurnViews views) {
-            views.startButton.setVisibility(View.VISIBLE);
-            views.startButton.setEnabled(true);
-            views.acceptButton.setVisibility(View.GONE);
-            views.acceptButton.setEnabled(false);
-            views.endButton.setVisibility(View.GONE);
-            views.endButton.setEnabled(false);
-            views.countdownView.setVisibility(View.GONE);
-            views.turnScore.setVisibility(View.GONE);
-            views.word.setVisibility(View.GONE);
+            views.startBtn.setVisibility(View.VISIBLE);
+            views.startBtn.setEnabled(true);
+            views.acceptBtn.setVisibility(View.GONE);
+            views.acceptBtn.setEnabled(false);
+            views.acceptLastBtn.setVisibility(View.GONE);
+            views.acceptLastBtn.setEnabled(false);
+            views.returnBtn.setVisibility(View.GONE);
+            views.returnBtn.setEnabled(false);
+            views.endBtn.setVisibility(View.GONE);
+            views.endBtn.setEnabled(false);
+            views.countdownTxt.setVisibility(View.GONE);
+            views.scoreTxt.setVisibility(View.GONE);
+            views.wordTxt.setVisibility(View.GONE);
         }
     }
 
@@ -49,15 +60,42 @@ public sealed interface TurnUiState permits TurnUiState.Ready, TurnUiState.Runni
         }
         @Override
         public void render(final StatelessTurnViews views) {
-            views.startButton.setVisibility(View.GONE);
-            views.startButton.setEnabled(false);
-            views.acceptButton.setVisibility(View.VISIBLE);
-            views.acceptButton.setEnabled(true);
-            views.endButton.setVisibility(View.GONE);
-            views.endButton.setEnabled(false);
-            views.countdownView.setVisibility(View.VISIBLE);
-            views.turnScore.setVisibility(View.VISIBLE);
-            views.word.setVisibility(View.VISIBLE);
+            views.startBtn.setVisibility(View.GONE);
+            views.startBtn.setEnabled(false);
+            views.acceptBtn.setVisibility(View.VISIBLE);
+            views.acceptBtn.setEnabled(true);
+            views.acceptLastBtn.setVisibility(View.GONE);
+            views.acceptLastBtn.setEnabled(false);
+            views.returnBtn.setVisibility(View.GONE);
+            views.returnBtn.setEnabled(false);
+            views.endBtn.setVisibility(View.GONE);
+            views.endBtn.setEnabled(false);
+            views.countdownTxt.setVisibility(View.VISIBLE);
+            views.scoreTxt.setVisibility(View.VISIBLE);
+            views.wordTxt.setVisibility(View.VISIBLE);
+        }
+    }
+
+    record LastWord() implements TurnUiState {
+        @Override
+        public void ifLastWordOrThrow(final Consumer<? super LastWord> action) {
+            action.accept(this);
+        }
+        @Override
+        public void render(final StatelessTurnViews views) {
+            views.startBtn.setVisibility(View.GONE);
+            views.startBtn.setEnabled(false);
+            views.acceptBtn.setVisibility(View.GONE);
+            views.acceptBtn.setEnabled(false);
+            views.acceptLastBtn.setVisibility(View.VISIBLE);
+            views.acceptLastBtn.setEnabled(true);
+            views.returnBtn.setVisibility(View.VISIBLE);
+            views.returnBtn.setEnabled(true);
+            views.endBtn.setVisibility(View.GONE);
+            views.endBtn.setEnabled(false);
+            views.countdownTxt.setVisibility(View.VISIBLE);
+            views.scoreTxt.setVisibility(View.VISIBLE);
+            views.wordTxt.setVisibility(View.VISIBLE);
         }
     }
 
@@ -68,15 +106,19 @@ public sealed interface TurnUiState permits TurnUiState.Ready, TurnUiState.Runni
         }
         @Override
         public void render(final StatelessTurnViews views) {
-            views.startButton.setVisibility(View.GONE);
-            views.startButton.setEnabled(false);
-            views.acceptButton.setVisibility(View.GONE);
-            views.acceptButton.setEnabled(false);
-            views.endButton.setVisibility(View.VISIBLE);
-            views.endButton.setEnabled(true);
-            views.countdownView.setVisibility(View.VISIBLE);
-            views.turnScore.setVisibility(View.VISIBLE);
-            views.word.setVisibility(View.GONE);
+            views.startBtn.setVisibility(View.GONE);
+            views.startBtn.setEnabled(false);
+            views.acceptBtn.setVisibility(View.GONE);
+            views.acceptBtn.setEnabled(false);
+            views.acceptLastBtn.setVisibility(View.GONE);
+            views.acceptLastBtn.setEnabled(false);
+            views.returnBtn.setVisibility(View.GONE);
+            views.returnBtn.setEnabled(false);
+            views.endBtn.setVisibility(View.VISIBLE);
+            views.endBtn.setEnabled(true);
+            views.countdownTxt.setVisibility(View.VISIBLE);
+            views.scoreTxt.setVisibility(View.VISIBLE);
+            views.wordTxt.setVisibility(View.GONE);
         }
     }
 }

@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import com.c71n93.hat.R;
 import com.c71n93.hat.model.Hat;
+import com.c71n93.hat.model.RememberingHat;
 import com.c71n93.hat.model.Team;
 import com.c71n93.hat.model.viewmodel.GameStateViewModel;
 import com.c71n93.hat.ui.elements.TurnScore;
@@ -34,10 +35,10 @@ public class GameTurnFragment extends Fragment {
         final StatelessTurnViews views = new StatelessTurnViews(view);
         this.state = renderNewState(TurnUiState.ready(), views);
         final TurnScore score = new TurnScore();
-        views.startButton.setOnClickListener(
+        views.startBtn.setOnClickListener(
             button -> this.onStartClicked(views, score)
         );
-        views.endButton.setOnClickListener(
+        views.endBtn.setOnClickListener(
             button -> {
                 this.state.ifFinishedOrThrow(
                     finished -> this.currentTeam().addPoints(score.score())
@@ -62,30 +63,27 @@ public class GameTurnFragment extends Fragment {
         ).hat();
     }
 
-    // TODO: Fragile spaghetti-code with lots of temporal coupling. Should be
-    // refactored.
     private void onStartClicked(final StatelessTurnViews views, final TurnScore score) {
         this.state = renderNewState(TurnUiState.running(), views);
-        score.draw(views.turnScore);
-        final Hat hat = this.currentHat();
+        score.draw(views.scoreTxt);
+        final RememberingHat hat = new RememberingHat(this.currentHat());
         if (!this.renderNextWord(hat, views)) {
             this.state = renderNewState(TurnUiState.finished(), views);
             return;
         }
         final VisualizedCountdownSeconds countdown = new VisualizedCountdownSeconds(
-            views.countdownView,
-            5,
+            views.countdownTxt,
+            5, // TODO: make turn time configurable
             () -> this.state.ifRunningOrThrow(
-                // TODO: Handle situation with last pulled word when timer is up (accept / put
-                // back)
-                running -> this.state = renderNewState(TurnUiState.finished(), views)
+                    // TODO: add timer for TurnUiState.LastWord state
+                running -> this.state = renderNewState(TurnUiState.lastWord(), views)
             )
         );
         countdown.start();
-        views.acceptButton.setOnClickListener(
+        views.acceptBtn.setOnClickListener(
             accept -> this.state.ifRunningOrThrow(
                 running -> {
-                    score.incrementAndDraw(views.turnScore);
+                    score.incrementAndDraw(views.scoreTxt);
                     if (!this.renderNextWord(hat, views)) {
                         countdown.stop();
                         this.state = renderNewState(TurnUiState.finished(), views);
@@ -93,12 +91,28 @@ public class GameTurnFragment extends Fragment {
                 }
             )
         );
+        views.acceptLastBtn.setOnClickListener(
+            accept -> this.state.ifLastWordOrThrow(
+                lastWord -> {
+                    score.incrementAndDraw(views.scoreTxt);
+                    this.state = renderNewState(TurnUiState.finished(), views);
+                }
+            )
+        );
+        views.returnBtn.setOnClickListener(
+            returnLast -> this.state.ifLastWordOrThrow(
+                lastWord -> {
+                    hat.undoPull();
+                    this.state = renderNewState(TurnUiState.finished(), views);
+                }
+            )
+        );
     }
 
-    private boolean renderNextWord(final Hat hat, final StatelessTurnViews views) {
+    private boolean renderNextWord(final RememberingHat hat, final StatelessTurnViews views) {
         return hat.pull().map(
             word -> {
-                word.draw(views.word);
+                word.draw(views.wordTxt);
                 return true;
             }
         ).orElse(false);

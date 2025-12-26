@@ -6,19 +6,23 @@ import android.widget.TextView;
 import com.c71n93.hat.R;
 
 final class StatelessTurnViews {
-    final Button startButton;
-    final Button acceptButton;
-    final Button endButton;
-    final TextView countdownView;
-    final TextView turnScore;
-    final TextView word;
+    final Button startBtn;
+    final Button acceptBtn;
+    final Button acceptLastBtn;
+    final Button returnBtn;
+    final Button endBtn;
+    final TextView countdownTxt;
+    final TextView scoreTxt;
+    final TextView wordTxt;
 
     StatelessTurnViews(final View root) {
-        this.startButton = root.findViewById(R.id.button_start);
-        this.acceptButton = root.findViewById(R.id.button_accept);
-        this.endButton = root.findViewById(R.id.button_end_turn);
-        this.countdownView = root.findViewById(R.id.text_turn_countdown);
-        this.turnScore = root.findViewById(R.id.text_turn_score);
-        this.word = root.findViewById(R.id.text_next_word);
+        this.startBtn = root.findViewById(R.id.button_start);
+        this.acceptBtn = root.findViewById(R.id.button_accept);
+        this.acceptLastBtn = root.findViewById(R.id.button_accept_last);
+        this.returnBtn = root.findViewById(R.id.button_return_last);
+        this.endBtn = root.findViewById(R.id.button_end_turn);
+        this.countdownTxt = root.findViewById(R.id.text_turn_countdown);
+        this.scoreTxt = root.findViewById(R.id.text_turn_score);
+        this.wordTxt = root.findViewById(R.id.text_next_word);
     }
 }

@@ -28,7 +28,7 @@ public class Hat {
         this.rnd = rnd;
     }
 
-    public void add(final Word word) {
+    public void put(final Word word) {
         this.bag.add(word);
     }
 

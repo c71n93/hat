@@ -24,6 +24,7 @@
     <string name="button_add_word">Add word</string>
     <string name="button_start_turn">Start Turn</string>
     <string name="button_start">Start</string>
-    <string name="button_accept">Accept</string>
+    <string name="button_accept">Accept Word</string>
+    <string name="button_return">Put Back</string>
     <string name="button_end_turn">End Turn</string>
 </resources>
