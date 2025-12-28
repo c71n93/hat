@@ -4,7 +4,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.c71n93.hat.R;
 
@@ -38,10 +37,9 @@ public class MultipleTeamInputViews {
             this.teamsContainer,
             false
         );
-        final TextView label = view.findViewById(R.id.label_team_name);
-        final int teamNumber = this.inputs.size() + 1;
-        label.setText(this.layoutInflater.getContext().getString(R.string.label_team_name, teamNumber));
         final EditText editText = view.findViewById(R.id.input_team_name);
+        final int teamNumber = this.inputs.size() + 1;
+        editText.setText(this.layoutInflater.getContext().getString(R.string.label_team_default, teamNumber));
         final EditStringInput input = new EditStringInput(editText);
         this.inputs.add(input);
         this.teamsContainer.addView(view);

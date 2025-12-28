@@ -28,12 +28,12 @@ sealed interface StartUiState permits StartUiState.Default, StartUiState.EndOfRo
         @Override
         public void render(final StartViews views) {
             views.wordsLeftTxt.setVisibility(View.VISIBLE);
-            views.roundOverTxt.setVisibility(View.GONE);
+            views.roundOverTxt.setVisibility(View.INVISIBLE);
             views.startTurnBtn.setVisibility(View.VISIBLE);
             views.startTurnBtn.setEnabled(true);
-            views.newRoundBtn.setVisibility(View.GONE);
+            views.newRoundBtn.setVisibility(View.INVISIBLE);
             views.newRoundBtn.setEnabled(false);
-            views.endGameBtn.setVisibility(View.GONE);
+            views.endGameBtn.setVisibility(View.INVISIBLE);
             views.endGameBtn.setEnabled(false);
         }
     }
@@ -45,9 +45,9 @@ sealed interface StartUiState permits StartUiState.Default, StartUiState.EndOfRo
         }
         @Override
         public void render(final StartViews views) {
-            views.wordsLeftTxt.setVisibility(View.GONE);
+            views.wordsLeftTxt.setVisibility(View.INVISIBLE);
             views.roundOverTxt.setVisibility(View.VISIBLE);
-            views.startTurnBtn.setVisibility(View.GONE);
+            views.startTurnBtn.setVisibility(View.INVISIBLE);
             views.startTurnBtn.setEnabled(false);
             views.newRoundBtn.setVisibility(View.VISIBLE);
             views.newRoundBtn.setEnabled(true);

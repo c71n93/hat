@@ -1,14 +1,16 @@
 <resources>
     <!--    Labels    -->
     <string name="app_name">hat</string>
+    <string name="app_title">The Hat</string>
     <string name="game_settings_title">Game Settings</string>
-    <string name="hat_filling_title">Hat Filling</string>
-    <string name="game_start_title">Game Start</string>
-    <string name="game_turn_title">Game Turn</string>
-    <string name="label_team_name">Name for team %1$d</string>
-    <string name="hint_team_name">Enter the name for your team</string>
+    <string name="hat_filling_title">Fill the Hat</string>
+    <string name="game_start_title">Game Status</string>
+    <string name="game_turn_title">Your Turn</string>
+    <string name="label_teams">Teams</string>
+    <string name="label_team_default">team%1$d</string>
+    <string name="hint_team_name">Enter team</string>
     <string name="label_total_words">Total words for the game</string>
-    <string name="hint_total_words">Enter total number of words in the hat</string>
+    <string name="hint_total_words">Enter total words</string>
     <string name="label_word">Your word</string>
     <string name="hint_word">Enter new word</string>
     <string name="label_words_left">Words left: %1$d</string>
@@ -17,13 +19,13 @@
     <string name="label_time_is_up">Time’s up!</string>
     <string name="label_words_in_hat">Words in hat: %1$d</string>
     <string name="label_team_queue_item">%1$s: %2$d</string>
-    <string name="label_round_is_over">Hat is empty. Start new round?</string>
+    <string name="label_round_is_over">Hat is empty.\nStart new round?</string>
     <string name="dialog_live_title">Leave?</string>
     <!--    Buttons    -->
     <string name="button_new_game">New Game</string>
     <string name="button_next">Next</string>
-    <string name="button_add_team">Add team</string>
-    <string name="button_add_word">Add word</string>
+    <string name="button_add_team">Add Team</string>
+    <string name="button_add_word">Add Word</string>
     <string name="button_start_turn">Start Turn</string>
     <string name="button_start">Start</string>
     <string name="button_accept">Accept Word</string>

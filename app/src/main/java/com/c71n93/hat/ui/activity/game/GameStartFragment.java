@@ -14,6 +14,7 @@ import com.c71n93.hat.R;
 import com.c71n93.hat.model.viewmodel.GameStateViewModel;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+// TODO: rename to GameStatusFragment
 public class GameStartFragment extends Fragment {
     private StartUiState state = StartUiState.defaultState();
 

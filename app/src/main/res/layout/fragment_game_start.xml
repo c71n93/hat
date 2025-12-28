@@ -5,23 +5,36 @@
     android:layout_height="match_parent"
     android:padding="24dp">
 
+    <TextView
+        android:id="@+id/label_game_start_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/game_start_title"
+        android:textAppearance="@style/TextAppearance.Hat.Title"
+        android:textAlignment="viewStart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
         android:id="@+id/container_teams_queue"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
+        android:layout_marginTop="24dp"
+        android:gravity="start"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@id/label_words_left"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/label_game_start_title" />
 
     <TextView
         android:id="@+id/label_words_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textAppearance="@style/TextAppearance.Hat.Subtitle"
+        android:textAlignment="viewStart"
         app:layout_constraintBottom_toTopOf="@id/button_start_turn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,11 +42,13 @@
 
     <TextView
         android:id="@+id/label_round_is_over"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
+        android:gravity="center_horizontal"
         android:text="@string/label_round_is_over"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textAppearance="@style/TextAppearance.Hat.Subtitle"
+        android:textAlignment="center"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/button_start_turn"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,34 +57,34 @@
 
     <Button
         android:id="@+id/button_new_round"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:text="@string/button_new_round"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/label_round_is_over"
+        app:layout_constraintTop_toBottomOf="@id/label_words_left"
         app:layout_constraintEnd_toStartOf="@id/button_end_game"
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <Button
         android:id="@+id/button_end_game"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:layout_marginStart="12dp"
         android:text="@string/button_end_game"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/label_round_is_over"
+        app:layout_constraintTop_toBottomOf="@id/label_words_left"
         app:layout_constraintStart_toEndOf="@id/button_new_round"
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <Button
         android:id="@+id/button_start_turn"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:text="@string/button_start_turn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/label_team_queue_item"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="4dp"
-    android:paddingTop="6dp"
-    android:paddingBottom="6dp"
-    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-    android:textColor="@color/black"
+    android:layout_marginTop="8dp"
+    android:background="@drawable/bg_item_outline"
+    android:padding="12dp"
+    android:textAppearance="@style/TextAppearance.Hat.Subtitle"
+    android:textAlignment="viewStart"
     android:textStyle="bold" />

@@ -5,33 +5,47 @@
     android:layout_height="match_parent"
     android:padding="24dp">
 
-    <Button
-        android:id="@+id/button_start"
-        android:layout_width="wrap_content"
+    <!-- TODO: Display "Team Name"'s turn here -->
+    <TextView
+        android:id="@+id/label_game_turn_title"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/button_start"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/game_turn_title"
+        android:textAppearance="@style/TextAppearance.Hat.Title"
+        android:textAlignment="viewStart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_start"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/button_start"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <TextView
         android:id="@+id/text_turn_countdown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textAppearance="@style/TextAppearance.Hat.Timer"
+        android:textAlignment="viewStart"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/label_game_turn_title" />
 
     <TextView
         android:id="@+id/text_turn_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_marginTop="96dp"
+        android:textAppearance="@style/TextAppearance.Hat.Subtitle"
+        android:textAlignment="viewStart"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,10 +53,14 @@
 
     <TextView
         android:id="@+id/text_next_word"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:background="@drawable/bg_item_outline"
+        android:gravity="center"
+        android:padding="16dp"
+        android:textAppearance="@style/TextAppearance.Hat.Title"
+        android:textAlignment="center"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +68,7 @@
 
     <Button
         android:id="@+id/button_accept"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/button_accept"
@@ -61,37 +79,35 @@
 
     <Button
         android:id="@+id/button_accept_last"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/button_accept"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_next_word"
-        app:layout_constraintEnd_toStartOf="@id/button_return_last" />
-
-    <Button
-        android:id="@+id/button_return_last"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="12dp"
-        android:text="@string/button_return"
-        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/button_accept_last"
         app:layout_constraintTop_toBottomOf="@id/text_next_word" />
 
     <Button
-        android:id="@+id/button_end_turn"
-        android:layout_width="wrap_content"
+        android:id="@+id/button_return_last"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/button_end_turn"
+        android:layout_marginTop="12dp"
+        android:text="@string/button_return"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_accept" />
+        app:layout_constraintTop_toBottomOf="@id/button_accept_last" />
+
+    <Button
+        android:id="@+id/button_end_turn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/button_end_turn"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

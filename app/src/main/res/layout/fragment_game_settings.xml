@@ -1,53 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:fillViewport="true"
     android:padding="24dp">
 
-    <ScrollView
-        android:id="@+id/scroll_view_teams"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/label_game_settings_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/game_settings_title"
+            android:textAppearance="@style/TextAppearance.Hat.Title"
+            android:textAlignment="viewStart" />
+
+        <TextView
+            android:id="@+id/label_teams"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/label_teams"
+            android:textAppearance="@style/TextAppearance.Hat.Subtitle"
+            android:textAlignment="viewStart" />
 
         <LinearLayout
             android:id="@+id/container_team_inputs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
             android:orientation="vertical" />
 
-    </ScrollView>
+        <Button
+            android:id="@+id/button_add_team"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/button_add_team" />
 
-    <Button
-        android:id="@+id/button_add_team"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="8dp"
-        android:text="@string/button_add_team" />
+        <TextView
+            android:id="@+id/label_total_words"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/label_total_words"
+            android:textAppearance="@style/TextAppearance.Hat.Subtitle"
+            android:textAlignment="viewStart" />
 
-    <TextView
-        android:id="@+id/label_total_words"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/label_total_words"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+        <EditText
+            android:id="@+id/input_total_words"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:hint="@string/hint_total_words"
+            android:inputType="number" />
 
-    <EditText
-        android:id="@+id/input_total_words"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:inputType="number"
-        android:hint="@string/hint_total_words" />
+        <Button
+            android:id="@+id/button_next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/button_next" />
 
-    <Button
-        android:id="@+id/button_next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/button_next" />
+    </LinearLayout>
 
-</LinearLayout>
+</androidx.core.widget.NestedScrollView>
