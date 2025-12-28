@@ -14,6 +14,7 @@ import com.c71n93.hat.R;
 import com.c71n93.hat.model.Hat;
 import com.c71n93.hat.model.RememberingHat;
 import com.c71n93.hat.model.TeamsQueue;
+import com.c71n93.hat.model.viewmodel.GameSettingsViewModel;
 import com.c71n93.hat.model.viewmodel.GameStateViewModel;
 import com.c71n93.hat.ui.elements.TurnScore;
 import com.c71n93.hat.ui.elements.VisualizedCountdownSeconds;
@@ -72,7 +73,7 @@ public class GameTurnFragment extends Fragment {
         }
         final VisualizedCountdownSeconds countdown = new VisualizedCountdownSeconds(
             views.countdownTxt,
-            5, // TODO: make turn time configurable
+            this.currentTurnDurationSeconds(),
             () -> this.state.ifRunningOrThrow(
                 // TODO: add timer for TurnUiState.LastWord state
                 running -> this.state = renderNewState(TurnUiState.lastWord(), views)
@@ -157,6 +158,13 @@ public class GameTurnFragment extends Fragment {
             GameStateViewModel.self(requireActivity()).state().getValue(),
             "Game state is not ready."
         ).hat();
+    }
+
+    private int currentTurnDurationSeconds() {
+        return Objects.requireNonNull(
+            GameSettingsViewModel.self(requireActivity()).settings().getValue(),
+            "Game settings are not ready."
+        ).turnDurationSec();
     }
 
     private boolean renderNextWord(final RememberingHat hat, final TurnViews views) {

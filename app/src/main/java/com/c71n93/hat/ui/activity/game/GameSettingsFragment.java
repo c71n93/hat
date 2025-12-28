@@ -41,6 +41,7 @@ public class GameSettingsFragment extends Fragment {
             view.findViewById(R.id.container_team_inputs)
         ).addInput().addInput();
         final EditIntInput totalWordsInput = new EditIntInput(view.findViewById(R.id.input_total_words));
+        final EditIntInput turnDurationInput = new EditIntInput(view.findViewById(R.id.input_turn_duration));
         view.findViewById(R.id.button_add_team).setOnClickListener(
             button -> teamInputViews.addInput()
         );
@@ -53,14 +54,16 @@ public class GameSettingsFragment extends Fragment {
                     names -> names.stream().map(Team::new).collect(Collectors.toList())
                 );
                 // TODO: maybe it will be useful to implement WordsNumInputsValidation
-                final Optional<Integer> words = new DefaultInputsValidation<>(totalWordsInput).validated().map(
-                    numbers -> numbers.get(0)
-                );
+                final Optional<List<Integer>> numbers = new DefaultInputsValidation<>(
+                    totalWordsInput,
+                    turnDurationInput
+                ).validated();
                 // TODO: it definitely may be implemented more elegant using something like
                 // "InputCombination"
-                if (teams.isPresent() && words.isPresent()) {
+                if (teams.isPresent() && numbers.isPresent()) {
+                    final List<Integer> values = numbers.get();
                     GameSettingsViewModel.self(requireActivity())
-                        .updateSettings(new GameSettings(teams.get(), words.get()));
+                        .updateSettings(new GameSettings(teams.get(), values.get(0), values.get(1)));
                     Navigation.findNavController(button)
                         .navigate(R.id.action_gameSettingsFragment_to_hatFillingFragment);
                 }

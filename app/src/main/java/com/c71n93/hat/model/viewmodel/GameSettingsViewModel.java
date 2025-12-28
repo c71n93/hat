@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class GameSettingsViewModel extends ViewModel {
     private final MutableLiveData<GameSettings> settings = new MutableLiveData<>(
-        new GameSettings(new ArrayList<>(), 0)
+        new GameSettings(new ArrayList<>(), 0, 0)
     );
 
     public LiveData<GameSettings> settings() {

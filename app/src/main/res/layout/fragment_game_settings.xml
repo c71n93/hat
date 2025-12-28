@@ -1,70 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
     android:padding="24dp">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/label_game_settings_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:text="@string/game_settings_title"
+        android:textAlignment="viewStart"
+        android:textAppearance="@style/TextAppearance.Hat.Title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/label_game_settings_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/game_settings_title"
-            android:textAppearance="@style/TextAppearance.Hat.Title"
-            android:textAlignment="viewStart" />
-
-        <TextView
-            android:id="@+id/label_teams"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/label_teams"
-            android:textAppearance="@style/TextAppearance.Hat.Subtitle"
-            android:textAlignment="viewStart" />
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll_game_settings"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="24dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@id/button_next"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/label_game_settings_title">
 
         <LinearLayout
-            android:id="@+id/container_team_inputs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:orientation="vertical" />
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/button_add_team"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/button_add_team" />
+            <TextView
+                android:id="@+id/label_teams"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/label_teams"
+                android:textAlignment="viewStart"
+                android:textAppearance="@style/TextAppearance.Hat.Subtitle" />
 
-        <TextView
-            android:id="@+id/label_total_words"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="@string/label_total_words"
-            android:textAppearance="@style/TextAppearance.Hat.Subtitle"
-            android:textAlignment="viewStart" />
+            <LinearLayout
+                android:id="@+id/container_team_inputs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="vertical" />
 
-        <EditText
-            android:id="@+id/input_total_words"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:hint="@string/hint_total_words"
-            android:inputType="number" />
+            <Button
+                android:id="@+id/button_add_team"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/button_add_team" />
 
-        <Button
-            android:id="@+id/button_next"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="@string/button_next" />
+            <TextView
+                android:id="@+id/label_total_words"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/label_total_words"
+                android:textAlignment="viewStart"
+                android:textAppearance="@style/TextAppearance.Hat.Subtitle" />
 
-    </LinearLayout>
+            <EditText
+                android:id="@+id/input_total_words"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:hint="@string/hint_total_words"
+                android:inputType="number" />
 
-</androidx.core.widget.NestedScrollView>
+            <TextView
+                android:id="@+id/label_turn_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/label_turn_duration"
+                android:textAlignment="viewStart"
+                android:textAppearance="@style/TextAppearance.Hat.Subtitle" />
+
+            <EditText
+                android:id="@+id/input_turn_duration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:hint="@string/hint_turn_duration"
+                android:inputType="number"
+                android:text="@string/default_turn_duration" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <Button
+        android:id="@+id/button_next"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/button_next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

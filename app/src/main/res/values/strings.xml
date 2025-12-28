@@ -11,6 +11,9 @@
     <string name="hint_team_name">Enter team</string>
     <string name="label_total_words">Total words for the game</string>
     <string name="hint_total_words">Enter total words</string>
+    <string name="label_turn_duration">Turn duration (seconds)</string>
+    <string name="hint_turn_duration">Enter seconds</string>
+    <string name="default_turn_duration">60</string>
     <string name="label_word">Your word</string>
     <string name="hint_word">Enter new word</string>
     <string name="label_words_left">Words left: %1$d</string>
