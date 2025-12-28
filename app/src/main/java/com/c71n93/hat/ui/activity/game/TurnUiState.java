@@ -44,8 +44,8 @@ sealed interface TurnUiState
             views.acceptBtn.setEnabled(false);
             views.acceptLastBtn.setVisibility(View.GONE);
             views.acceptLastBtn.setEnabled(false);
-            views.returnBtn.setVisibility(View.GONE);
-            views.returnBtn.setEnabled(false);
+            views.returnLastBtn.setVisibility(View.GONE);
+            views.returnLastBtn.setEnabled(false);
             views.endBtn.setVisibility(View.GONE);
             views.endBtn.setEnabled(false);
             views.countdownTxt.setVisibility(View.GONE);
@@ -67,8 +67,8 @@ sealed interface TurnUiState
             views.acceptBtn.setEnabled(true);
             views.acceptLastBtn.setVisibility(View.GONE);
             views.acceptLastBtn.setEnabled(false);
-            views.returnBtn.setVisibility(View.GONE);
-            views.returnBtn.setEnabled(false);
+            views.returnLastBtn.setVisibility(View.GONE);
+            views.returnLastBtn.setEnabled(false);
             views.endBtn.setVisibility(View.GONE);
             views.endBtn.setEnabled(false);
             views.countdownTxt.setVisibility(View.VISIBLE);
@@ -90,8 +90,8 @@ sealed interface TurnUiState
             views.acceptBtn.setEnabled(false);
             views.acceptLastBtn.setVisibility(View.VISIBLE);
             views.acceptLastBtn.setEnabled(true);
-            views.returnBtn.setVisibility(View.VISIBLE);
-            views.returnBtn.setEnabled(true);
+            views.returnLastBtn.setVisibility(View.VISIBLE);
+            views.returnLastBtn.setEnabled(true);
             views.endBtn.setVisibility(View.GONE);
             views.endBtn.setEnabled(false);
             views.countdownTxt.setVisibility(View.VISIBLE);
@@ -113,8 +113,8 @@ sealed interface TurnUiState
             views.acceptBtn.setEnabled(false);
             views.acceptLastBtn.setVisibility(View.GONE);
             views.acceptLastBtn.setEnabled(false);
-            views.returnBtn.setVisibility(View.GONE);
-            views.returnBtn.setEnabled(false);
+            views.returnLastBtn.setVisibility(View.GONE);
+            views.returnLastBtn.setEnabled(false);
             views.endBtn.setVisibility(View.VISIBLE);
             views.endBtn.setEnabled(true);
             views.countdownTxt.setVisibility(View.VISIBLE);

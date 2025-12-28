@@ -6,10 +6,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import androidx.navigation.NavController;
 import com.c71n93.hat.R;
 import com.c71n93.hat.model.viewmodel.GameStateViewModel;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class GameStartFragment extends Fragment {
     private StartUiState state = StartUiState.defaultState();
@@ -27,6 +30,7 @@ public class GameStartFragment extends Fragment {
     public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         final StartViews views = new StartViews(view);
+        final NavController navController = Navigation.findNavController(view);
         this.state = renderNewState(StartUiState.defaultState(), views);
         GameStateViewModel.self(requireActivity()).state().observe(
             getViewLifecycleOwner(),
@@ -41,8 +45,7 @@ public class GameStartFragment extends Fragment {
             }
         );
         views.startTurnBtn.setOnClickListener(
-            button -> Navigation.findNavController(button)
-                .navigate(R.id.action_gameStartFragment_to_gameTurnFragment)
+            button -> navController.navigate(R.id.action_gameStartFragment_to_gameTurnFragment)
         );
         views.newRoundBtn.setOnClickListener(
             button -> this.state.ifEndOfRoundOrThrow(
@@ -52,10 +55,32 @@ public class GameStartFragment extends Fragment {
         views.endGameBtn.setOnClickListener(
             button -> requireActivity().finish()
         );
+        requireActivity().getOnBackPressedDispatcher().addCallback(
+            getViewLifecycleOwner(),
+            new OnBackPressedCallback(true) {
+                @Override
+                public void handleOnBackPressed() {
+                    GameStartFragment.this.showLeaveDialog(navController);
+                }
+            }
+        );
     }
 
     private static StartUiState renderNewState(final StartUiState next, final StartViews views) {
         next.render(views);
         return next;
+    }
+
+    // TODO: unify showLeaveDialog code to make it reusable (see
+    // GameTurnFragment.showLeaveDialog)
+    private void showLeaveDialog(final NavController navController) {
+        new MaterialAlertDialogBuilder(requireContext())
+            .setTitle(R.string.dialog_live_title)
+            .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.dismiss())
+            .setPositiveButton(
+                R.string.button_leave,
+                (dialog, which) -> navController.popBackStack(R.id.gameSettingsFragment, false)
+            )
+            .show();
     }
 }

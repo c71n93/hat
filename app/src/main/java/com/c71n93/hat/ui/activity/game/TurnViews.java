@@ -9,7 +9,7 @@ final class TurnViews {
     final Button startBtn;
     final Button acceptBtn;
     final Button acceptLastBtn;
-    final Button returnBtn;
+    final Button returnLastBtn;
     final Button endBtn;
     final TextView countdownTxt;
     final TextView scoreTxt;
@@ -19,7 +19,7 @@ final class TurnViews {
         this.startBtn = root.findViewById(R.id.button_start);
         this.acceptBtn = root.findViewById(R.id.button_accept);
         this.acceptLastBtn = root.findViewById(R.id.button_accept_last);
-        this.returnBtn = root.findViewById(R.id.button_return_last);
+        this.returnLastBtn = root.findViewById(R.id.button_return_last);
         this.endBtn = root.findViewById(R.id.button_end_turn);
         this.countdownTxt = root.findViewById(R.id.text_turn_countdown);
         this.scoreTxt = root.findViewById(R.id.text_turn_score);
