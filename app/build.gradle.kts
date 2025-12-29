@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.c71n93.hat"
+    namespace = "hat.app"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.c71n93.hat"
+        applicationId = "hat.app"
         minSdk = 29
         targetSdk = 36
         versionCode = 1

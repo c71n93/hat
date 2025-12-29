@@ -13,12 +13,12 @@
         android:theme="@style/Theme.Hat">
 
         <activity
-            android:name=".ui.activity.game.GameActivity"
+            android:name="hat.ui.activity.game.GameActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
         <activity
-            android:name=".ui.activity.MainActivity"
+            android:name="hat.ui.activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

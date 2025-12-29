@@ -1,0 +1,50 @@
+package hat.model;
+
+import android.view.ViewGroup;
+import hat.ui.elements.DrawableToContainer;
+import java.util.ArrayDeque;
+import java.util.Collection;
+import java.util.Deque;
+import java.util.Iterator;
+
+/**
+ * The queue of teams.
+ */
+public class TeamsQueue implements DrawableToContainer {
+    private final Deque<Team> teams;
+
+    public TeamsQueue() {
+        this(new ArrayDeque<>());
+    }
+
+    public TeamsQueue(final Collection<Team> teams) {
+        this.teams = new ArrayDeque<>(teams);
+    }
+
+    /**
+     * Gets the next team in the queue. Then, puts it to the end of the queue.
+     * 
+     * @return Next team.
+     */
+    public Team next() {
+        final Team team = this.teams.removeFirst();
+        this.teams.addLast(team);
+        return team;
+    }
+
+    // TODO: Wrap teams into ScrollView to be able to fit more teams in one screen.
+    @Override
+    public void draw(final ViewGroup container) {
+        // TODO: implement decorator for ViewGroup called EmptyContainer, that will
+        // guarantee emptiness.
+        container.removeAllViews();
+        final Iterator<Team> iterator = this.teams.iterator();
+        if (!iterator.hasNext()) {
+            throw new IllegalStateException("Teams queue should not be empty.");
+        }
+        new HighlightedTeam(iterator.next()).draw(container);
+        while (iterator.hasNext()) {
+            iterator.next().draw(container);
+        }
+    }
+}

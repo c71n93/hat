@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/gameSettingsFragment"
-        android:name="com.c71n93.hat.ui.activity.game.GameSettingsFragment"
+        android:name="hat.ui.activity.game.GameSettingsFragment"
         android:label="@string/game_settings_title">
         <action
             android:id="@+id/action_gameSettingsFragment_to_hatFillingFragment"
@@ -15,7 +15,7 @@
 
     <fragment
         android:id="@+id/hatFillingFragment"
-        android:name="com.c71n93.hat.ui.activity.game.HatFillingFragment"
+        android:name="hat.ui.activity.game.HatFillingFragment"
         android:label="@string/hat_filling_title">
         <action
             android:id="@+id/action_hatFillingFragment_to_gameStartFragment"
@@ -24,7 +24,7 @@
 
     <fragment
         android:id="@+id/gameStartFragment"
-        android:name="com.c71n93.hat.ui.activity.game.GameStartFragment"
+        android:name="hat.ui.activity.game.GameStartFragment"
         android:label="@string/game_start_title">
         <action
             android:id="@+id/action_gameStartFragment_to_gameTurnFragment"
@@ -33,7 +33,7 @@
 
     <fragment
         android:id="@+id/gameTurnFragment"
-        android:name="com.c71n93.hat.ui.activity.game.GameTurnFragment"
+        android:name="hat.ui.activity.game.GameTurnFragment"
         android:label="@string/game_turn_title">
         <action
             android:id="@+id/action_gameTurnFragment_to_gameStartFragment"
