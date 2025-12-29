@@ -1,6 +1,7 @@
 package com.c71n93.hat.ui.elements;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.TextView;
@@ -42,6 +43,7 @@ public class VisualizedCountdownSeconds {
                 VisualizedCountdownSeconds.this.view.setText(
                     VisualizedCountdownSeconds.this.view.getContext().getString(R.string.label_time_is_up)
                 );
+                VisualizedCountdownSeconds.this.playAlarm();
                 VisualizedCountdownSeconds.this.onFinish.run();
             }
         };
@@ -56,6 +58,12 @@ public class VisualizedCountdownSeconds {
 
     public void stop() {
         this.timer.cancel();
+    }
+
+    private void playAlarm() {
+        final MediaPlayer player = MediaPlayer.create(this.view.getContext(), R.raw.alarm);
+        player.setOnCompletionListener(MediaPlayer::release);
+        player.start();
     }
 
     private static int secToMillisec(final int sec) {
