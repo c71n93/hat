@@ -45,6 +45,9 @@ public class GameSettingsFragment extends Fragment {
         view.findViewById(R.id.button_add_team).setOnClickListener(
             button -> teamInputViews.addInput()
         );
+        view.findViewById(R.id.button_remove_team).setOnClickListener(
+            button -> teamInputViews.removeLastInput()
+        );
         view.findViewById(R.id.button_next).setOnClickListener(
             button -> {
                 // TODO: maybe it will be useful to implement TeamInputsValidation

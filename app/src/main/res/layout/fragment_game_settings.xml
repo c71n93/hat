@@ -49,12 +49,28 @@
                 android:layout_marginTop="12dp"
                 android:orientation="vertical" />
 
-            <Button
-                android:id="@+id/button_add_team"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/button_add_team" />
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button_add_team"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/button_add_team" />
+
+                <Button
+                    android:id="@+id/button_remove_team"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:text="@string/button_remove_team" />
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/label_total_words"

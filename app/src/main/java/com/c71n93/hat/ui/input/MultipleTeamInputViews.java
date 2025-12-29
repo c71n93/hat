@@ -21,6 +21,7 @@ public class MultipleTeamInputViews {
     private final LayoutInflater layoutInflater;
     private final ViewGroup teamsContainer;
     private final List<EditStringInput> inputs = new ArrayList<>();
+    private static final int MIN_TEAM_COUNT = 2;
 
     public MultipleTeamInputViews(final ViewGroup teamsContainer) {
         this(LayoutInflater.from(teamsContainer.getContext()), teamsContainer);
@@ -43,6 +44,15 @@ public class MultipleTeamInputViews {
         final EditStringInput input = new EditStringInput(editText);
         this.inputs.add(input);
         this.teamsContainer.addView(view);
+        return this;
+    }
+
+    public MultipleTeamInputViews removeLastInput() {
+        if (this.inputs.size() > MIN_TEAM_COUNT) {
+            final int lastIndex = this.inputs.size() - 1;
+            this.inputs.remove(lastIndex);
+            this.teamsContainer.removeViewAt(lastIndex);
+        }
         return this;
     }
 

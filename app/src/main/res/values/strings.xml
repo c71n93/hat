@@ -28,6 +28,7 @@
     <string name="button_new_game">New Game</string>
     <string name="button_next">Next</string>
     <string name="button_add_team">Add Team</string>
+    <string name="button_remove_team">Remove Team</string>
     <string name="button_add_word">Add Word</string>
     <string name="button_start_turn">Start Turn</string>
     <string name="button_start">Start</string>
