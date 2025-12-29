@@ -12,3 +12,6 @@ local.properties
 # Agents
 CLAUDE.md
 AGENTS.md
+
+# APK
+*.jks
