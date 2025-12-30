@@ -22,7 +22,14 @@
     <string name="label_time_is_up">Time’s up!</string>
     <string name="label_words_in_hat">Words in hat: %1$d</string>
     <string name="label_team_queue_item">%1$s: %2$d</string>
-    <string name="label_round_is_over">Hat is empty.\nStart new round?</string>
+    <string name="label_round_is_over">
+        Hat is empty.
+        \nStart new round?
+    </string>
+    <string name="label_credits">
+        Project on GitHub: github.com/c71n93/hat
+        \nFeel free to contribute or report bugs.
+    </string>
     <string name="dialog_live_title">Leave?</string>
     <!--    Buttons    -->
     <string name="button_new_game">New Game</string>
