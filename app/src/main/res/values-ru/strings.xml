@@ -1,0 +1,49 @@
+<resources>
+    <!--    Labels    -->
+    <string name="app_name">шляпа</string>
+    <string name="app_title">Шляпа</string>
+    <string name="game_settings_title">Настройки игры</string>
+    <string name="hat_filling_title">Заполнение шляпы</string>
+    <string name="game_start_title">Статус игры</string>
+    <string name="game_turn_title">Ваш ход</string>
+    <string name="label_teams">Команды</string>
+    <string name="label_team_default">Команда %1$d</string>
+    <string name="hint_team_name">Введите команду</string>
+    <string name="label_total_words">Всего слов в игре</string>
+    <string name="hint_total_words">Введите количество слов</string>
+    <string name="label_turn_duration">Длительность хода (секунды)</string>
+    <string name="hint_turn_duration">Введите количество секунд</string>
+    <string name="default_turn_duration">60</string>
+    <string name="label_word">Ваше слово</string>
+    <string name="hint_word">Введите новое слово</string>
+    <string name="label_words_left">Осталось слов: %1$d</string>
+    <string name="label_time_left">Осталось времени: %1$d</string>
+    <string name="label_turn_score">Очки за ход: %1$d</string>
+    <string name="label_time_is_up">Время вышло!</string>
+    <string name="label_words_in_hat">Слов в шляпе: %1$d</string>
+    <string name="label_team_queue_item">%1$s: %2$d</string>
+    <string name="label_round_is_over">
+        Шляпа пуста.
+        \nНачать новый раунд?
+    </string>
+    <string name="label_credits">
+        Проект на GitHub: github.com/c71n93/hat\n
+        Буду рад предложениям или сообщениям об ошибках.
+    </string>
+    <string name="dialog_live_title">Выйти?</string>
+    <!--    Buttons    -->
+    <string name="button_new_game">Новая игра</string>
+    <string name="button_switch_language">RU</string>
+    <string name="button_next">Далее</string>
+    <string name="button_add_team">Добавить команду</string>
+    <string name="button_remove_team">Удалить команду</string>
+    <string name="button_add_word">Добавить слово</string>
+    <string name="button_start_turn">Начать ход</string>
+    <string name="button_start">Начать</string>
+    <string name="button_accept">Принять слово</string>
+    <string name="button_return">Положить обратно</string>
+    <string name="button_end_turn">Завершить ход</string>
+    <string name="button_new_round">Новый раунд</string>
+    <string name="button_end_game">Завершить игру</string>
+    <string name="button_leave">Выйти</string>
+</resources>

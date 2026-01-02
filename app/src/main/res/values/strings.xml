@@ -7,7 +7,7 @@
     <string name="game_start_title">Game Status</string>
     <string name="game_turn_title">Your Turn</string>
     <string name="label_teams">Teams</string>
-    <string name="label_team_default">team%1$d</string>
+    <string name="label_team_default">Team %1$d</string>
     <string name="hint_team_name">Enter team</string>
     <string name="label_total_words">Total words for the game</string>
     <string name="hint_total_words">Enter total words</string>
@@ -27,12 +27,13 @@
         \nStart new round?
     </string>
     <string name="label_credits">
-        Project on GitHub: github.com/c71n93/hat
-        \nFeel free to contribute or report bugs.
+        Project on GitHub: github.com/c71n93/hat\n
+        Feel free to contribute or report bugs.
     </string>
     <string name="dialog_live_title">Leave?</string>
     <!--    Buttons    -->
     <string name="button_new_game">New Game</string>
+    <string name="button_switch_language">EN</string>
     <string name="button_next">Next</string>
     <string name="button_add_team">Add Team</string>
     <string name="button_remove_team">Remove Team</string>

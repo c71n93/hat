@@ -19,6 +19,16 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:id="@+id/button_switch_language"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:minWidth="52dp"
+        android:minHeight="52dp"
+        android:text="@string/button_switch_language"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
         android:id="@+id/button_new_game"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -26,19 +36,22 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.6" />
 
     <TextView
         android:id="@+id/label_credits"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autoLink="web"
+        android:gravity="center_horizontal"
         android:linksClickable="true"
         android:text="@string/label_credits"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.Hat.Body"
         android:textSize="11sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

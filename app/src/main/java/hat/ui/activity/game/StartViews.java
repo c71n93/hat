@@ -5,7 +5,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import hat.app.R;
 
-class StartViews {
+final class StartViews {
     final TextView wordsLeftTxt;
     final TextView roundOverTxt;
     final Button startTurnBtn;
